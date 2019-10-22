@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1569894603 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominios.cpp
+	"dominios.hpp"
+	<vector>
+	<algorithm>
+	<sstream>
+
+1569951777 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominios.hpp
+	<iostream>
+	<string>
+	<stdexcept>
+
+1569679779 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\entidades.cpp
+	"entidades.hpp"
+
+1569951777 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\entidades.hpp
+	"dominios.hpp"
+	<iostream>
+	<string>
+	<stdexcept>
+
