@@ -461,7 +461,6 @@ void Nome::validar(string valor)
 
         if (!(Nome::CaracterLetra(*it) || (*it == ponto) || (*it == espaco)))
         {
-            cout << *it << endl;
             throw invalid_argument("O nome so deve conter letras, ponto ou espaço.");
         }
 

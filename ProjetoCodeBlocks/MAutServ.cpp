@@ -2,6 +2,7 @@
 
 using namespace std;
 
+/*
 bool StubCntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error)
 {
     string valorEmail;   
@@ -28,5 +29,5 @@ bool StubCntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error
             return true;
         }
     }
-
 }
+*/

@@ -8,8 +8,11 @@ class CntrUserApres : public IUserApres
 {
     private:
         IUserServ * cntrUserServ;
+        const static int MAX_TENTATIVAS = 3;
 
+        //static int obterDadoUsuario(Usuario * usuario, Dominio * dominio, string classeDominio);
 
+        static bool obterContaCorrente (Conta * conta);
     public:
         void setCntrUserServ (IUserServ * cntrUserServ)
         {

@@ -37,5 +37,5 @@ class IUserApres
 class IUserServ
 {
     public:
-        virtual bool cadastrar(Usuario * usuario) throw(runtime_error) = 0;
-}
+        virtual bool cadastrar(Usuario * usuario, Conta * conta1, Conta * conta2) throw(runtime_error) = 0;
+};

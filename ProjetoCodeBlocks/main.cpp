@@ -4,12 +4,15 @@
 #include "dominios.hpp"
 #include "entidades.hpp"
 #include "MAutApres.hpp"
-#include "MAutServ.hpp"
+#include "MUserApres.hpp"
+#include "stubs.hpp"
 
 using namespace std;
 
 int main()
 {
+    //////// Teste da Controladora de Apresentação da Autenticação ////////
+/*    
     IAutServ * stubAut;
     stubAut = new StubCntrAutServ();
 
@@ -37,8 +40,22 @@ int main()
     {
         cout << exp.what() << endl;
     }
+*/
 
-    cout << "O e-mail cadastrado foi " << email->getValor() << endl;
+    IUserServ * stubServ;
+    stubServ = new StubCntrUserServ;
 
+    CntrUserApres cua;
+
+    cua.setCntrUserServ(stubServ);
+
+    try
+    {   
+        cua.cadastrar();
+    }
+    catch (const runtime_error& exp)
+    {
+        cout << exp.what() << endl;
+    }
     return 0;
 }
