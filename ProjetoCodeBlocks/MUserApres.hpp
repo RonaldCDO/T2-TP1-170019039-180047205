@@ -10,10 +10,11 @@ class CntrUserApres : public IUserApres
         IUserServ * cntrUserServ;
         const static int MAX_TENTATIVAS = 3;
 
-        //static int obterDadoUsuario(Usuario * usuario, Dominio * dominio, string classeDominio);
-
         static bool obterContaCorrente (Conta * conta);
+
+        static bool obterDadosUsuario(Usuario * usuario);
     public:
+
         void setCntrUserServ (IUserServ * cntrUserServ)
         {
             this->cntrUserServ = cntrUserServ;
