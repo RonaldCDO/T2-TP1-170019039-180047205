@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
     //////// Teste da Controladora de Apresentação da Autenticação ////////
-/*    
+    
     IAutServ * stubAut;
     stubAut = new StubCntrAutServ();
 
@@ -40,22 +40,36 @@ int main()
     {
         cout << exp.what() << endl;
     }
-*/
 
+
+    //////// Teste da Controladora de Apresentação de Usuário ////////
+/*
     IUserServ * stubServ;
     stubServ = new StubCntrUserServ;
 
-    CntrUserApres cua;
+    CntrUserApres controladoraU;
 
-    cua.setCntrUserServ(stubServ);
+    controladoraU.setCntrUserServ(stubServ);
 
     try
     {   
-        cua.cadastrar();
+        controladoraU.cadastrar();
     }
     catch (const runtime_error& exp)
     {
         cout << exp.what() << endl;
     }
+*/
+
+    //////// Teste Make File ////////
+/*
+    Usuario user;
+    Nome nome;
+
+    nome.setValor("Matheus");
+    user.setNome(nome);
+
+    cout << user.getNome().getValor() << endl;
+*/
     return 0;
 }
