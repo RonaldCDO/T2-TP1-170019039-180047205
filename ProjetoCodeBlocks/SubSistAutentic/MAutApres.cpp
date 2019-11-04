@@ -1,4 +1,4 @@
-#include <string>
+#include <string.h>
 #include "MAutApres.hpp"
 
 #include <curses.h>
@@ -62,7 +62,8 @@ bool CntrAutApres::autenticar(Email * email) throw(runtime_error)
             {
                 //cout << "Quantidade de tentativas excedida." << endl;
 
-                string timeOut = "Quantidade de tentativas excedida.";
+                char timeOut[] = "Quantidade de tentativas excedida.";
+                int linha, coluna;
 
                 initscr();                                                                      // Inicia curses.
                 getmaxyx(stdscr,linha,coluna);                                                  // Armazena quantidade de linhas e de colunas.

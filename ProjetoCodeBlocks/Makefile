@@ -8,7 +8,7 @@ LDLIBS = -lncurses
 executable: main.o dominios.o entidades.o stubs.o MAutApres.o MUserApres.o
 	g++ main.o entidades.o dominios.o stubs.o MAutApres.o MUserApres.o -o executable -lncurses
 
-mai: main.cpp DominiosEntidades/dominios.hpp DominiosEntidades/entidades.hpp SubSistAutentic/MAutApres.hpp SubSistUser/MUserApres.hpp Stubs/stubs.hpp
+main.o: main.cpp DominiosEntidades/dominios.hpp DominiosEntidades/entidades.hpp SubSistAutentic/MAutApres.hpp SubSistUser/MUserApres.hpp Stubs/stubs.hpp
 	g++ $(DE) $(SA) $(SU) $(STUB) $(INT) -c main.cpp
 
 MUserApres.o: SubSistUser/MUserApres.cpp SubSistUser/MUserApres.hpp Interfaces/interfaces.hpp
