@@ -12,8 +12,20 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-Weffc++" />
+					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add directory="DominiosEntidades" />
+					<Add directory="Interfaces" />
+					<Add directory="Stubs" />
+					<Add directory="SubSistAutentic" />
+					<Add directory="SubSistUser" />
+					<Add directory="SubSistRide" />
 				</Compiler>
+				<Linker>
+					<Add library="../../../../../../Program Files (x86)/CodeBlocks/MinGW/lib/pdcurses.lib" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/ProjetoCodeBlocks" prefix_auto="1" extension_auto="1" />
@@ -32,10 +44,23 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="dominios.cpp" />
-		<Unit filename="dominios.hpp" />
-		<Unit filename="entidades.cpp" />
-		<Unit filename="entidades.hpp" />
+		<Unit filename="DominiosEntidades/dominios.cpp" />
+		<Unit filename="DominiosEntidades/dominios.hpp" />
+		<Unit filename="DominiosEntidades/entidades.cpp" />
+		<Unit filename="DominiosEntidades/entidades.hpp" />
+		<Unit filename="Interfaces/interfaces.hpp" />
+		<Unit filename="Stubs/stubs.cpp" />
+		<Unit filename="Stubs/stubs.hpp" />
+		<Unit filename="SubSistAutentic/MAutApres.cpp" />
+		<Unit filename="SubSistAutentic/MAutApres.hpp" />
+		<Unit filename="SubSistAutentic/MAutServ.cpp" />
+		<Unit filename="SubSistAutentic/MAutServ.hpp" />
+		<Unit filename="SubSistRide/MRidApres.cpp" />
+		<Unit filename="SubSistRide/MRidApres.hpp" />
+		<Unit filename="SubSistRide/MRidServ.cpp" />
+		<Unit filename="SubSistRide/MRidServ.hpp" />
+		<Unit filename="SubSistUser/MUserApres.cpp" />
+		<Unit filename="SubSistUser/MUserApres.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

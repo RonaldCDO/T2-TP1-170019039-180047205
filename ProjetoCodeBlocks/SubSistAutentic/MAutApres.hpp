@@ -16,5 +16,5 @@ class CntrAutApres : public IAutApres
             this->cntrAutServ = cntrAutServ;
         }
 
-        bool autenticar (Email * email) throw(runtime_error);    
+        bool autenticar (Email * email) throw(runtime_error);
 };

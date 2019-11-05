@@ -3,6 +3,7 @@
 
 #include <curses.h>
 
+
 using namespace std;
 
 bool CntrAutApres::autenticar(Email * email) throw(runtime_error)
@@ -45,7 +46,7 @@ bool CntrAutApres::autenticar(Email * email) throw(runtime_error)
             noecho();                                                                       // Desabilita eco.
             getch();                                                                        // L� caracter digitado.
             echo();                                                                         // Habilita eco.
-            endwin(); 
+            endwin();
 
             email->setValor(valorEmail);
             senha.setValor(valorSenha);
@@ -57,7 +58,7 @@ bool CntrAutApres::autenticar(Email * email) throw(runtime_error)
         catch(const invalid_argument& exp)
         {
             cout << exp.what() << endl;
-            
+
             if (++i == MAX_TENTATIVAS)
             {
                 //cout << "Quantidade de tentativas excedida." << endl;
@@ -71,7 +72,7 @@ bool CntrAutApres::autenticar(Email * email) throw(runtime_error)
                 noecho();                                                                       // Desabilita eco.
                 getch();                                                                        // L� caracter digitado.
                 echo();                                                                         // Habilita eco.
-                endwin();  
+                endwin();
 
                 return false;
             }

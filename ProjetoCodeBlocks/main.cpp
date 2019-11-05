@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <string.h>
 
 #include "dominios.hpp"
 #include "entidades.hpp"
@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
     //////// Teste da Controladora de Apresentação da Autenticação ////////
-    
+
     IAutServ * stubAut;
     stubAut = new StubCntrAutServ();
 
@@ -52,7 +52,7 @@ int main()
     controladoraU.setCntrUserServ(stubServ);
 
     try
-    {   
+    {
         controladoraU.cadastrar();
     }
     catch (const runtime_error& exp)

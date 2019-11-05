@@ -42,3 +42,21 @@ class IUserServ
     public:
         virtual bool cadastrar(Usuario * usuario, Conta * conta1, Conta * conta2) throw(runtime_error) = 0;
 };
+
+
+
+class IRidApres
+{
+    public:
+        virtual bool cadastrarCarona() throw(runtime_error) = 0;
+
+        virtual ~IRidApres(){}
+};
+
+
+
+class IRidServ
+{
+    public:
+        virtual bool cadastrarCarona(Carona * carona) throw(runtime_error) = 0;
+};
