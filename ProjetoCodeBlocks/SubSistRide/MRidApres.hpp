@@ -9,15 +9,12 @@ class CntrRidApres : public IRidApres
     private:
         IRideServ * cntrAutServ;
 
-
     public:
         void setCntrRidServ (IRidServ * cntrRidServ)
         {
             this->cntrRidServ = cntrRidServ;
         }
 
-        bool cadastrarCarona (CodigoDeCarona * codigoDeCarona, Cidade * cidadeDeOrigem,
-                              Estado * estadoDeOrigem, Cidade * cidadeDeDestino,
-                              Estado * estadoDeDestino, Data * dataDePartida,
-                              Duracao * duracao, Vagas * vagas, Preco * preco) throw(runtime_error);
+        bool cadastrarCarona (Email * email) throw(runtime_error);
+        
 };

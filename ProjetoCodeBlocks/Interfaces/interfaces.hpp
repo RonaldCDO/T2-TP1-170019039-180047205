@@ -33,6 +33,8 @@ class IUserApres
     public:
         virtual void cadastrar() throw(runtime_error) = 0;
         //virtual void excluir(Email * email) throw(runtime_error) = 0;
+
+        virtual ~IUserApres(){}
 };
 
 
@@ -41,6 +43,8 @@ class IUserServ
 {
     public:
         virtual bool cadastrar(Usuario * usuario, Conta * conta1, Conta * conta2) throw(runtime_error) = 0;
+
+        virtual ~IUserServ(){}
 };
 
 
@@ -48,7 +52,7 @@ class IUserServ
 class IRidApres
 {
     public:
-        virtual bool cadastrarCarona() throw(runtime_error) = 0;
+        virtual bool cadastrarCarona(Email * email) throw(runtime_error) = 0;
 
         virtual ~IRidApres(){}
 };
