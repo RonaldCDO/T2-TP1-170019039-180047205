@@ -19,3 +19,11 @@ class StubCntrUserServ : public IUserServ
     public:
         bool cadastrar (Usuario * usuario, Conta * conta1, Conta * conta2) throw(runtime_error);
 };
+
+
+
+class StubCntrRidServ : public IRidServ
+{
+    public:
+        bool cadastrarCarona(Usuario * usuario, Carona * carona) throw(runtime_error);
+};

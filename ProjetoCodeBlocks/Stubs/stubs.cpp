@@ -5,7 +5,7 @@ using namespace std;
 
 bool StubCntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error)
 {
-    string valorEmail;   
+    string valorEmail;
     string valorSenha;
 
     valorEmail = email->getValor();
@@ -18,7 +18,7 @@ bool StubCntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error
     {
         return false;
     }
-    else 
+    else
     {
         if (valorSenha == "mat10")
         {
@@ -33,7 +33,7 @@ bool StubCntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error
 
 
 bool StubCntrUserServ::cadastrar(Usuario * usuario, Conta * conta1, Conta * conta2) throw(runtime_error)
-{    
+{
     if (usuario->getNome().getValor() == "Matheus")
     {
         return false;
@@ -47,5 +47,19 @@ bool StubCntrUserServ::cadastrar(Usuario * usuario, Conta * conta1, Conta * cont
     else
     {
         return true;
+    }
+}
+
+
+bool cadastrarCarona(Usuario * usuario, Carona * carona) throw(runtime_error)
+{
+    if(carona->getCidadeDeDestino().getValor() == "Brasilia")
+    {
+        return false;
+    }
+
+    if (carona->getCidadeDeDestino().getValor() == "Goiania")
+    {
+        throw runtime_error("Sistema temporariamente indisponivel...");
     }
 }

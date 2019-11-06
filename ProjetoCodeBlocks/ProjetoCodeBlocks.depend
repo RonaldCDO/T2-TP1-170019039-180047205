@@ -48,10 +48,10 @@
 	<string>
 	<stdexcept>
 
-1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.hpp
+1572899164 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.hpp
 	"interfaces.hpp"
 
-1572889282 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\interfaces\interfaces.hpp
+1573059508 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\interfaces\interfaces.hpp
 	<iostream>
 	<curses.h>
 	"dominios.hpp"
@@ -60,10 +60,10 @@
 1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserapres.hpp
 	"interfaces.hpp"
 
-1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.hpp
+1572997089 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.hpp
 	"interfaces.hpp"
 
-1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.cpp
+1572997226 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.cpp
 	"stubs.hpp"
 
 1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautserv.cpp
@@ -75,8 +75,14 @@
 1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserapres.cpp
 	"MUserApres.hpp"
 
-1572890402 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.cpp
+1572890429 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.cpp
 	<string.h>
 	"MAutApres.hpp"
 	<curses.h>
+
+1572893257 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridserv.cpp
+	"MRidApres.hpp"
+
+1573059299 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.hpp
+	"interfaces.hpp"
 

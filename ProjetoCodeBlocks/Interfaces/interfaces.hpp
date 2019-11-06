@@ -52,7 +52,7 @@ class IUserServ
 class IRidApres
 {
     public:
-        virtual bool cadastrarCarona(Email * email) throw(runtime_error) = 0;
+        virtual bool cadastrarCarona() throw(runtime_error) = 0;
 
         virtual ~IRidApres(){}
 };
@@ -63,4 +63,6 @@ class IRidServ
 {
     public:
         virtual bool cadastrarCarona(Carona * carona) throw(runtime_error) = 0;
+
+        virtual ~IRidServ(){}
 };

@@ -7,7 +7,7 @@ using namespace std;
 class CntrRidApres : public IRidApres
 {
     private:
-        IRideServ * cntrAutServ;
+        IRidServ * cntrRidServ;
 
     public:
         void setCntrRidServ (IRidServ * cntrRidServ)
@@ -15,6 +15,28 @@ class CntrRidApres : public IRidApres
             this->cntrRidServ = cntrRidServ;
         }
 
-        bool cadastrarCarona (Email * email) throw(runtime_error);
-        
+        bool cadastrarCarona () throw(runtime_error);
+
+};
+
+
+
+/*class TelaDadosUsuario
+{
+    private:
+        const static int MAX_TENTATIVAS = 3;
+
+    public:
+        bool run(Usuario * usuario);
+};
+*/
+
+
+class TelaDadosCarona
+{
+    private:
+        const static int MAX_TENTATIVAS = 3;
+
+    public:
+        bool run(Carona * carona);
 };
