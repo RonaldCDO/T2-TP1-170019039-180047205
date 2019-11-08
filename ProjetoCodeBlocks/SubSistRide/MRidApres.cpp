@@ -293,7 +293,7 @@ void CntrRidApres::cadastrarCarona()throw(runtime_error)
     Carona * carona;
     carona = new Carona();
 
-    TelaDadosUsuario telaRide;
+    TelaDadosCarona telaRide;
 
     if (!(telaRide.run(carona)))
     {

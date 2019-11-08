@@ -15,7 +15,7 @@ class CntrRidApres : public IRidApres
             this->cntrRidServ = cntrRidServ;
         }
 
-        bool cadastrarCarona () throw(runtime_error);
+        void cadastrarCarona () throw(runtime_error);
 
 };
 

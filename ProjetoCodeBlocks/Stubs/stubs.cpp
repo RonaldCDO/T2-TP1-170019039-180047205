@@ -51,7 +51,7 @@ bool StubCntrUserServ::cadastrar(Usuario * usuario, Conta * conta1, Conta * cont
 }
 
 
-bool cadastrarCarona(Usuario * usuario, Carona * carona) throw(runtime_error)
+bool cadastrarCarona(Carona * carona) throw(runtime_error)
 {
     if(carona->getCidadeDeDestino().getValor() == "Brasilia")
     {

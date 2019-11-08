@@ -19,13 +19,14 @@
 	<string>
 	<stdexcept>
 
-1572890215 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\main.cpp
+1573217944 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\main.cpp
 	<iostream>
 	<string.h>
 	"dominios.hpp"
 	"entidades.hpp"
 	"MAutApres.hpp"
 	"MUserApres.hpp"
+	"MRidApres.hpp"
 	"stubs.hpp"
 
 1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\dominios.cpp
@@ -51,7 +52,7 @@
 1572899164 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.hpp
 	"interfaces.hpp"
 
-1573059508 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\interfaces\interfaces.hpp
+1573217623 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\interfaces\interfaces.hpp
 	<iostream>
 	<curses.h>
 	"dominios.hpp"
@@ -60,10 +61,10 @@
 1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserapres.hpp
 	"interfaces.hpp"
 
-1572997089 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.hpp
+1573219019 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.hpp
 	"interfaces.hpp"
 
-1572997226 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.cpp
+1573218161 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.cpp
 	"stubs.hpp"
 
 1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautserv.cpp
@@ -83,6 +84,9 @@
 1572893257 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridserv.cpp
 	"MRidApres.hpp"
 
-1573059299 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.hpp
+1573217623 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.hpp
 	"interfaces.hpp"
+
+1573128161 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.cpp
+	"MRidApres.hpp"
 

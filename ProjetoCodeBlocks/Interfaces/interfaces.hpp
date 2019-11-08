@@ -52,7 +52,7 @@ class IUserServ
 class IRidApres
 {
     public:
-        virtual bool cadastrarCarona() throw(runtime_error) = 0;
+        virtual void cadastrarCarona() throw(runtime_error) = 0;
 
         virtual ~IRidApres(){}
 };

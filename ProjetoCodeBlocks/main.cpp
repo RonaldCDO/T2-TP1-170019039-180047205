@@ -5,6 +5,7 @@
 #include "entidades.hpp"
 #include "MAutApres.hpp"
 #include "MUserApres.hpp"
+#include "MRidApres.hpp"
 #include "stubs.hpp"
 
 using namespace std;
@@ -15,8 +16,11 @@ int main()
 
     IAutServ * stubAut;
     stubAut = new StubCntrAutServ();
+    IRidServ * stubRid;
+    stubRid = new StubCntrRidServ();
 
     CntrAutApres caa;
+    CntrRidApres raa;
 
     Email * email;
     email = new Email();
@@ -24,6 +28,7 @@ int main()
     bool autenticado;
 
     caa.setCntrAutServ(stubAut);
+    raa.setCntrRidServ(stubRid);
 
     try
     {
