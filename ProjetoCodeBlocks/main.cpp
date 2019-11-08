@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string.h>
 
+#include <string>
+#include <string.h>
+#include <curses.h>
+
 #include "dominios.hpp"
 #include "entidades.hpp"
 #include "MAutApres.hpp"
@@ -13,7 +17,7 @@ using namespace std;
 int main()
 {
     //////// Teste da Controladora de Apresentação da Autenticação ////////
-
+/*
     IAutServ * stubAut;
     stubAut = new StubCntrAutServ();
     IRidServ * stubRid;
@@ -45,10 +49,10 @@ int main()
     {
         cout << exp.what() << endl;
     }
-
+*/
 
     //////// Teste da Controladora de Apresentação de Usuário ////////
-/*
+
     IUserServ * stubServ;
     stubServ = new StubCntrUserServ;
 
@@ -62,9 +66,23 @@ int main()
     }
     catch (const runtime_error& exp)
     {
-        cout << exp.what() << endl;
+        int linha, coluna;
+        initscr();
+        getmaxyx(stdscr,linha,coluna);  
+    
+        //Bloco para transformar uma 'string' em uma array de chars 
+        string erro = exp.what();
+        char expArg[erro.length() + 1];
+        strcpy(expArg, erro.c_str());
+
+        mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();                                                                       
+        endwin();
     }
-*/
+
 
     //////// Teste Make File ////////
 /*

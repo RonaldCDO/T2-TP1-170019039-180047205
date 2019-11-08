@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <curses.h>
+#include <string.h>
+#include <string>
+
 #include "dominios.hpp"
 #include "entidades.hpp"
 

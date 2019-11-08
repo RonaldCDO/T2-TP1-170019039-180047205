@@ -51,7 +51,7 @@ bool StubCntrUserServ::cadastrar(Usuario * usuario, Conta * conta1, Conta * cont
 }
 
 
-bool cadastrarCarona(Carona * carona) throw(runtime_error)
+bool StubCntrRidServ::cadastrarCarona(Carona * carona) throw(runtime_error)
 {
     if(carona->getCidadeDeDestino().getValor() == "Brasilia")
     {
@@ -62,4 +62,6 @@ bool cadastrarCarona(Carona * carona) throw(runtime_error)
     {
         throw runtime_error("Sistema temporariamente indisponivel...");
     }
+
+    return true;
 }

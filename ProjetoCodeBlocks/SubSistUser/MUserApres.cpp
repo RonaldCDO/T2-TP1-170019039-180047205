@@ -11,38 +11,73 @@ bool TelaDadosUsuario::run(Usuario * usuario)
     Senha senha;
     CPF cpf;
 
-    string valor;
     int qtdTentativas = 0;
 
-    cout << endl << "Informacoes para Cadastro de Usuario." << endl << endl;
+    //cout << endl << "Informacoes para Cadastro de Usuario." << endl << endl;
+
+    char userInfo[] = "Informacoes para Cadastro de Usuario.";
+    char novaEntrada[] = "Aperte ENTER e preencha o dado novamente.";
+    char tentativaExcedida[] = "Quantidade maxima de tentativas excedida.";
+    int linha,coluna;
+
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(userInfo))/2,"%s",userInfo);
+    noecho();
+    getch();                                                                        
+    echo(); 
+    clear();
 
     // Obtenção do Nome do Usuário
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {    
         try
         {
-            cout << "Nome: ";
-            cin >> valor;
-            nome.setValor(valor);
+            char dominio[] = "Nome: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
 
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            nome.setValor(valor);
             usuario->setNome(nome);
+            
             break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
@@ -53,28 +88,51 @@ bool TelaDadosUsuario::run(Usuario * usuario)
     {    
         try
         {
-            cout << "Telefone: ";
-            cin >> valor;
-            telefone.setValor(valor);
+            char dominio[] = "Telefone: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
 
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            telefone.setValor(valor);
             usuario->setTelefone(telefone);
+
             break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
@@ -85,28 +143,51 @@ bool TelaDadosUsuario::run(Usuario * usuario)
     {      
         try
         {
-            cout << "Email: ";
-            cin >> valor;
-            email.setValor(valor);
+            char dominio[] = "E-mail: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
 
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            email.setValor(valor);
             usuario->setEmail(email);
+
             break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
@@ -117,28 +198,51 @@ bool TelaDadosUsuario::run(Usuario * usuario)
     {      
         try
         {
-            cout << "Senha: ";
-            cin >> valor;
-            senha.setValor(valor);
+            char dominio[] = "Senha: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
 
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();            
+
+            senha.setValor(valor);
             usuario->setSenha(senha);
+            
             break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
@@ -149,30 +253,57 @@ bool TelaDadosUsuario::run(Usuario * usuario)
     {      
         try
         {
-            cout << "CPF: ";
-            cin >> valor;
-            cpf.setValor(valor);
+            char dominio[] = "CPF: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
 
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();            
+
+            cpf.setValor(valor);
             usuario->setCPF(cpf);
-            break;
+            
+            break;        
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
+
+    clear();
+    echo();
+    endwin();
 
     return true;
 }
@@ -185,37 +316,79 @@ bool TelaDadosConta::run(Conta * conta)
     NumeroDeAgencia numeroDeAgencia;
     NumeroDeConta numeroDeConta;
 
-    string valor;
     int qtdTentativas = 0;
 
-    cout << endl << "Dados de Conta Corrente." << endl << endl;
+    char contaInfo[] = "Dados de Conta Corrente.";
+    char novaEntrada[] = "Aperte ENTER e preencha o dado novamente.";
+    char tentativaExcedida[] = "Quantidade maxima de tentativas excedida.";
+    int linha,coluna;
+
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(contaInfo))/2,"%s",contaInfo);
+    noecho();
+    getch();                                                                        
+    echo(); 
+    clear();
 
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {      
         try
         {
+            /*
             cout << "Codigo de Banco: ";
             cin >> valor;
             codigoDeBanco.setValor(valor);
 
             conta->setCodigoDeBanco(codigoDeBanco);
             break;
+            */
+
+            char dominio[] = "Codigo de Banco: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();            
+
+            codigoDeBanco.setValor(valor);
+            conta->setCodigoDeBanco(codigoDeBanco);
+            
+            break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
@@ -226,28 +399,61 @@ bool TelaDadosConta::run(Conta * conta)
     {      
         try
         {
+            /*
             cout << "Numero de Agencia: ";
             cin >> valor;
             numeroDeAgencia.setValor(valor);
 
             conta->setNumeroDeAgencia(numeroDeAgencia);
             break;
+
+            */
+
+            char dominio[] = "Numero de Agencia: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();            
+
+            numeroDeAgencia.setValor(valor);
+            conta->setNumeroDeAgencia(numeroDeAgencia);
+            
+            break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
@@ -258,31 +464,65 @@ bool TelaDadosConta::run(Conta * conta)
     {      
         try
         {
+            /*
             cout << "Numero de Conta: ";
             cin >> valor;
             numeroDeConta.setValor(valor);
 
             conta->setNumeroDeConta(numeroDeConta);
             break;
+            */
+
+            char dominio[] = "Numero de Conta: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();            
+
+            numeroDeConta.setValor(valor);
+            conta->setNumeroDeConta(numeroDeConta);
+            
+            break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
+    clear();
+    endwin();
 
     return true;
 }
@@ -291,11 +531,20 @@ bool TelaDadosConta::run(Conta * conta)
 
 bool TelaDadosConta::novaConta(Conta * conta)
 {
-    string segundaConta;
-    cout << endl << "Gostaria de cadastrar uma segunda conta?" << endl << "Caso positivo, escreva 'sim'." << endl;
-    cin >> segundaConta;
+    char segConta1[] = "Gostaria de cadastrar uma segunda conta?";
+    char segConta2[] = "Caso positivo, digite 1; caso negativo, digite 2: ";
+    char resposta[] = "2";
+    int linha,coluna;
 
-    if (segundaConta == "sim")
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(segConta1))/2,"%s",segConta1);
+    mvprintw(linha/2 + 2,(coluna-strlen(segConta2))/2,"%s",segConta2);
+    getstr(resposta); 
+    clear();
+
+
+    if (resposta[0] == '1')
     {   
         TelaDadosConta tela;
         
@@ -341,7 +590,6 @@ void CntrUserApres::cadastrar() throw(runtime_error)
     if (!telaConta.novaConta(conta2))
     {
         delete conta2;
-        conta2 = NULL;
     }
 
     // Após validar os valores.
@@ -349,15 +597,28 @@ void CntrUserApres::cadastrar() throw(runtime_error)
 
     cadastrado = cntrUserServ->cadastrar(usuario, conta1, conta2);
 
+    int linha, coluna;
+    initscr();                                                                      // Inicia curses.
+    getmaxyx(stdscr,linha,coluna);
+
     if (cadastrado)
-    {    
-        cout << endl << "Usuario cadastrado com sucesso" << endl;
+    {   
+        char cadastrado[] = "Usuario cadastrado com sucesso!";
+        mvprintw(linha/2,(coluna-strlen(cadastrado))/2,"%s",cadastrado);
     }
 
     else
     {
-        cout << endl << "Usuario ja existente no banco de dados." << endl;
+        //cout << endl << "Usuario ja existente no banco de dados." << endl;
+        char cadastrado[] = "Usuario ja existente no banco de dados.";
+        mvprintw(linha/2,(coluna-strlen(cadastrado))/2,"%s",cadastrado);
     }
+
+    noecho();                                                                       // Desabilita eco.
+    getch();                                                                        // L� caracter digitado.
+    echo(); 
+    clear();                                                                            // Habilita eco.
+    endwin();
 
     return;
 }
