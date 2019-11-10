@@ -97,3 +97,19 @@ bool StubCntrRidServ::cadastrarCarona(Carona * carona) throw(runtime_error)
 
     return true;
 }
+
+
+bool StubCntrRidServ::descadastrarCarona (CodigoDeCarona codigo) throw(runtime_error)
+{
+    if (codigo.getValor() == "1234")
+    {
+        return false;
+    }
+
+    if (codigo.getValor() == "9999")
+    {
+        throw runtime_error("Sistema temporariamente indisponivel...");
+    }
+
+    return true;
+}

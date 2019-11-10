@@ -52,7 +52,7 @@ int main()
 */
 
     //////// Teste da Controladora de Apresentação de Usuário ////////
-
+/*
     IUserServ * stubServ;
     stubServ = new StubCntrUserServ;
 
@@ -60,9 +60,48 @@ int main()
 
     controladoraU.setCntrUserServ(stubServ);
 
+    Email * email;
+    email = new Email();
+    email->setValor("mat@costa");
+
     try
     {
         controladoraU.cadastrar();
+        //controladoraU.excluir(email);
+    }
+    catch (const runtime_error& exp)
+    {
+        int linha, coluna;
+        initscr();
+        getmaxyx(stdscr,linha,coluna);  
+    
+        //Bloco para transformar uma 'string' em uma array de chars 
+        string erro = exp.what();
+        char expArg[erro.length() + 1];
+        strcpy(expArg, erro.c_str());
+
+        mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();                                                                       
+        endwin();
+    }
+*/
+
+
+    //////// Teste da Controladora de Apresentação de Carona ////////
+
+    IRidServ * stubServ;
+    stubServ = new StubCntrRidServ();
+
+    CntrRidApres controladoraR;
+    controladoraR.setCntrRidServ(stubServ);
+
+    try
+    {
+        controladoraR.cadastrarCarona();
+        controladoraR.descadastrarCarona();
     }
     catch (const runtime_error& exp)
     {
@@ -83,16 +122,5 @@ int main()
         endwin();
     }
 
-
-    //////// Teste Make File ////////
-/*
-    Usuario user;
-    Nome nome;
-
-    nome.setValor("Matheus");
-    user.setNome(nome);
-
-    cout << user.getNome().getValor() << endl;
-*/
     return 0;
 }

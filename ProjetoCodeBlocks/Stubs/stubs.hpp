@@ -27,5 +27,6 @@ class StubCntrUserServ : public IUserServ
 class StubCntrRidServ : public IRidServ
 {
     public:
-        bool cadastrarCarona(Carona * carona) throw(runtime_error);
+        bool cadastrarCarona (Carona * carona) throw(runtime_error);
+        bool descadastrarCarona (CodigoDeCarona codigo) throw(runtime_error); 
 };

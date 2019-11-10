@@ -18,47 +18,88 @@ bool TelaDadosCarona::run(Carona * carona)
     string valor;
     int qtdTentativas = 0;
 
-    cout << endl << "Informacoes para Cadastro de Carona." << endl << endl;
+    char rideInfo[] = "Informacoes para Cadastro de Carona.";
+    char novaEntrada[] = "Aperte ENTER e preencha o dado novamente.";
+    char tentativaExcedida[] = "Quantidade maxima de tentativas excedida.";
+    int linha,coluna;   
 
-    // Obtenção do Nome do Usuário
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(rideInfo))/2,"%s",rideInfo);
+    noecho();
+    getch();                                                                        
+    echo(); 
+    clear();
+
+    // Obtenção do Código de Carona
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Codigo de Carona: ";
-            cin >> valor;
-            codigoDeCarona.setValor(valor);
+            char dominio[] = "Codigo de Carona: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
 
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();            
+
+            codigoDeCarona.setValor(valor);
             carona->setCodigoDeCarona(codigoDeCarona);
             break;
         }
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
     qtdTentativas = 0;
 
-    // Obtenção do Telefone do Usuário
+    // Obtenção da Cidade de Origem
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Cidade de Origem: ";
-            cin >> valor;
+            char dominio[] = "Cidade de Origem: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
             cidadeDeOrigem.setValor(valor);
 
             carona->setCidadeDeOrigem(cidadeDeOrigem);
@@ -67,30 +108,53 @@ bool TelaDadosCarona::run(Carona * carona)
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
     qtdTentativas = 0;
 
-    // Obtenção do Email do Usuário
+    // Obtenção do Estado de Origem
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Estado de Orogem: ";
-            cin >> valor;
+            char dominio[] = "Estado de Origem: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
             estadoDeOrigem.setValor(valor);
 
             carona->setEstadoDeOrigem(estadoDeOrigem);
@@ -99,30 +163,53 @@ bool TelaDadosCarona::run(Carona * carona)
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
     qtdTentativas = 0;
 
-    // Obtenção da Senha do Usuário
+    // Obtenção da Cidade de Destino
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Cidade de Destino: ";
-            cin >> valor;
+            char dominio[] = "Cidade de Destino: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
             cidadeDeDestino.setValor(valor);
 
             carona->setCidadeDeDestino(cidadeDeDestino);
@@ -131,30 +218,53 @@ bool TelaDadosCarona::run(Carona * carona)
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
     qtdTentativas = 0;
 
-    // Obtenção do CPF do Usuário
+    // Obtenção do Estado de Destino
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Estado de Destino: ";
-            cin >> valor;
+            char dominio[] = "Estado de Destino: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
             estadoDeDestino.setValor(valor);
 
             carona->setEstadoDeDestino(estadoDeDestino);
@@ -163,33 +273,53 @@ bool TelaDadosCarona::run(Carona * carona)
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
-    return true;
-
-
     qtdTentativas = 0;
 
-    // Obtenção do CPF do Usuário
+    // Obtenção da Data de Partida
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Data de Partida: ";
-            cin >> valor;
+            char dominio[] = "Data de Partida: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
             data.setValor(valor);
 
             carona->setData(data);
@@ -198,33 +328,53 @@ bool TelaDadosCarona::run(Carona * carona)
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
-    return true;
-
-
     qtdTentativas = 0;
 
-    // Obtenção do CPF do Usuário
+    // Obtenção da quantidade de Vagas
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Vagas: ";
-            cin >> valor;
+            char dominio[] = "Quantidade de vagas: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
             vagas.setValor(valor);
 
             carona->setVagas(vagas);
@@ -233,33 +383,53 @@ bool TelaDadosCarona::run(Carona * carona)
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
 
-    return true;
-
-
     qtdTentativas = 0;
 
-    // Obtenção do CPF do Usuário
+    // Obtenção do preço
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
         try
         {
-            cout << "Preco: ";
-            cin >> valor;
+            char dominio[] = "Preco: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
             preco.setValor(valor);
 
             carona->setPreco(preco);
@@ -268,28 +438,44 @@ bool TelaDadosCarona::run(Carona * carona)
 
         catch(const invalid_argument& exp)
         {
-            cout << exp.what() << endl;
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
             if (qtdTentativas != MAX_TENTATIVAS)
             {
-                cout << "Preencha o dado novamente." << endl;
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
             }
         }
     }
 
     if (qtdTentativas > MAX_TENTATIVAS)
     {
-        cout << "Quantidade maxima de tentativas excedida." << endl;
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
         return false;
     }
+
 
     return true;
 }
 
 
-void CntrRidApres::cadastrarCarona()throw(runtime_error)
+void CntrRidApres::cadastrarCarona() throw(runtime_error)
 {
-    // Dados de Carona.
+    // Obtenção dos dados de Carona.
     Carona * carona;
     carona = new Carona();
 
@@ -305,15 +491,62 @@ void CntrRidApres::cadastrarCarona()throw(runtime_error)
 
     cadastrado = cntrRidServ->cadastrarCarona(carona);
 
+    int linha, coluna;
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+
     if (cadastrado)
     {
-        cout << endl << "Carona cadastrada com sucesso" << endl;
+        char result[] = "Carona cadastrada com sucesso.";
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
     }
 
     else
     {
-        cout << endl << "Carona ja existente no banco de dados." << endl;
+        char result[] = "Carona com conflito de data ja disponibilizada pelo usuario.";
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
     }
+
+    getch();
+    clear();
+    endwin();
+
+    return;
+}
+
+
+void CntrRidApres::descadastrarCarona() throw(runtime_error)
+{
+    char dominio[] = "Digite o codigo de carona da qual se deseja excluir: ";
+
+    int linha, coluna;
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+    char valor[10];
+    getstr(valor);
+
+    clear();
+
+    CodigoDeCarona rideCode;
+    rideCode.setValor(valor);
+
+    if (cntrRidServ->descadastrarCarona(rideCode))
+    {
+        char result[] = "Carona descadastrada com sucesso.";
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+    }
+
+    else
+    {
+        char result[] = "Carona possui reservas associadas. Portando, nao pode ser descadastrada.";
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+    }
+
+    getch();
+    clear();
+    endwin();
 
     return;
 }

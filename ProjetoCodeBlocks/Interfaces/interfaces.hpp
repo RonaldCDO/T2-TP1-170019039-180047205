@@ -35,7 +35,7 @@ class IUserApres
 {
     public:
         virtual void cadastrar() throw(runtime_error) = 0;
-        //virtual void excluir(Email * email) throw(runtime_error) = 0;
+        virtual void excluir(Email * email) throw(runtime_error) = 0;
 
         virtual ~IUserApres(){}
 };
@@ -58,6 +58,7 @@ class IRidApres
 {
     public:
         virtual void cadastrarCarona() throw(runtime_error) = 0;
+        virtual void descadastrarCarona() throw(runtime_error) = 0;
 
         virtual ~IRidApres(){}
 };
@@ -67,7 +68,8 @@ class IRidApres
 class IRidServ
 {
     public:
-        virtual bool cadastrarCarona(Carona * carona) throw(runtime_error) = 0;
+        virtual bool cadastrarCarona (Carona * carona) throw(runtime_error) = 0;
+        virtual bool descadastrarCarona (CodigoDeCarona codigo) throw(runtime_error) = 0;
 
         virtual ~IRidServ(){}
 };
