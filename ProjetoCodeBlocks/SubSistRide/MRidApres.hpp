@@ -18,19 +18,10 @@ class CntrRidApres : public IRidApres
         void cadastrarCarona() throw(runtime_error);
 
         void descadastrarCarona() throw(runtime_error);
+
+        void reservarCarona() throw(runtime_error);
 };
 
-
-
-/*class TelaDadosUsuario
-{
-    private:
-        const static int MAX_TENTATIVAS = 3;
-
-    public:
-        bool run(Usuario * usuario);
-};
-*/
 
 
 class TelaDadosCarona
@@ -40,4 +31,15 @@ class TelaDadosCarona
 
     public:
         bool run(Carona * carona);
+};
+
+
+
+class TelaDadosReserva
+{
+    private:
+        const static int MAX_TENTATIVAS = 3;
+
+    public:
+        bool run(CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag);
 };

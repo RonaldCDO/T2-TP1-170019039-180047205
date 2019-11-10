@@ -473,6 +473,187 @@ bool TelaDadosCarona::run(Carona * carona)
 }
 
 
+bool TelaDadosReserva::run(CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag)
+{
+    int qtdTentativas = 0;
+
+    char reservaInfo[] = "Dados para solicitacao de reserva em carona.";
+    char novaEntrada[] = "Aperte ENTER e preencha o dado novamente.";
+    char tentativaExcedida[] = "Quantidade maxima de tentativas excedida.";
+    int linha,coluna;
+
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(reservaInfo))/2,"%s",reservaInfo);
+    getch();                                                                        
+    clear();
+
+    // Obtenção da carona solicitada
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Digite o Codigo de Carona da carona desejada: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            rideCode->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
+    // Obtenção do assento de preferência
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Preferencia de assento (D out T): ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            seat->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
+    // Obtenção da quantidade de bagagens
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Numero de volumes da bagagem: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            bag->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
+    return true;
+}
+
+
 void CntrRidApres::cadastrarCarona() throw(runtime_error)
 {
     // Obtenção dos dados de Carona.
@@ -548,5 +729,85 @@ void CntrRidApres::descadastrarCarona() throw(runtime_error)
     clear();
     endwin();
 
+    return;
+}
+
+
+void CntrRidApres::reservarCarona() throw(runtime_error)
+{
+    CodigoDeCarona * rideCode;
+    rideCode = new CodigoDeCarona();
+
+    Assento * assentoPref;
+    assentoPref = new Assento();
+
+    Bagagem * qtdBagagem;
+    qtdBagagem = new Bagagem();
+    
+    TelaDadosReserva telaReserva;
+
+    if (!(telaReserva.run(rideCode, assentoPref, qtdBagagem)))
+    {
+        return;
+    }
+
+    CodigoDeReserva * reservaCode;
+    reservaCode = new CodigoDeReserva();
+
+    Conta * prestador;
+    prestador = new Conta();
+
+    int linha, coluna;
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+
+    if (cntrRidServ->efetuarReserva(rideCode, assentoPref, qtdBagagem, reservaCode, prestador))
+    {
+        string valorReservaCode = reservaCode->getValor();
+        string valorCodigoDeBanco = prestador->getCodigoDeBanco().getValor();
+        string valorNumeroDeAgencia = prestador->getNumeroDeAgencia().getValor();
+        string valorNumeroDaConta = prestador->getNumeroDeConta().getValor();
+
+        string result1_str = "Reserva efetuada com sucesso!";
+        string result2_str = "O codigo da reserva é " + valorReservaCode + ".";
+        string pay1_str = "Dados para pagamento: ";
+        string pay2_str = "Codigo de Banco: " + valorCodigoDeBanco + ". Nº de Agencia: " 
+                        + valorNumeroDeAgencia + ". Nº da Conta: " + valorNumeroDaConta + ".";
+
+        char result1[result1_str.length() + 1];
+        char result2[result2_str.length() + 1];
+        char pay1[pay1_str.length() + 1];
+        char pay2[pay2_str.length() + 1];
+
+        strcpy(result1, result1_str.c_str());
+        strcpy(result2, result2_str.c_str());
+        strcpy(pay1, pay1_str.c_str());
+        strcpy(pay2, pay2_str.c_str());
+
+        mvprintw(linha/2,(coluna-strlen(result1))/2,"%s",result1);
+        mvprintw(linha/2 + 2,(coluna-strlen(result2))/2,"%s",result2);
+
+        getch();
+        clear();
+
+        mvprintw(linha/2,(coluna-strlen(pay1))/2,"%s",pay1);
+        mvprintw(linha/2 + 2,(coluna-strlen(pay2))/2,"%s",pay2);
+
+        getch();
+        clear();
+    }
+
+    else
+    {
+        char result[] = "Nao ha vagas disponiveis na carona solicitada... Tente outra.";
+
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+
+        getch();
+        clear();
+    }
+
+    endwin();
+    
     return;
 }

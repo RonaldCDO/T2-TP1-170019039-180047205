@@ -113,3 +113,43 @@ bool StubCntrRidServ::descadastrarCarona (CodigoDeCarona codigo) throw(runtime_e
 
     return true;
 }
+
+
+bool StubCntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, Conta * prestador) throw(runtime_error)
+{
+    if (rideCode->getValor() == "0001")
+    {
+        return false;
+    }
+
+    if (rideCode->getValor() == "9999")
+    {
+        throw runtime_error("Sistema temporariamente indisponivel...");
+    }
+
+    
+    Reserva * reserva;
+    reserva = new Reserva();
+
+    // Criação de um código de reserva arbitrário e criando a entidade Reserva
+    reservaCode->setValor("12345");
+
+    reserva->setCodigoDeReserva(*reservaCode);
+    reserva->setAssento(*seat);
+    reserva->setBagagem(*bag);
+
+    // Criação de uma conta arbitrária para retorno
+    CodigoDeBanco codigoDeBanco;
+    NumeroDeAgencia numeroDeAgencia;
+    NumeroDeConta numeroDeConta;
+
+    codigoDeBanco.setValor("123");
+    numeroDeAgencia.setValor("1111-4");
+    numeroDeConta.setValor("111111-1");
+
+    prestador->setCodigoDeBanco(codigoDeBanco);
+    prestador->setNumeroDeAgencia(numeroDeAgencia);
+    prestador->setNumeroDeConta(numeroDeConta);
+
+    return true;   
+}

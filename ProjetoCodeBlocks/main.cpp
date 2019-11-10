@@ -100,8 +100,9 @@ int main()
 
     try
     {
-        controladoraR.cadastrarCarona();
-        controladoraR.descadastrarCarona();
+        //controladoraR.cadastrarCarona();
+        //controladoraR.descadastrarCarona();
+        controladoraR.reservarCarona();
     }
     catch (const runtime_error& exp)
     {
