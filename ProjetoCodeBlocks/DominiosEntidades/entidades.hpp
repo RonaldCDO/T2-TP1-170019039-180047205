@@ -290,6 +290,8 @@ class Conta : public Entidade
         NumeroDeAgencia numeroDeAgencia;
         NumeroDeConta numeroDeConta;
 
+        Usuario * dono;
+
     public:
         ///O M�todo  tem a fun��o de atribuir um objeto da classe CodigoDeBanco ao atributo **codigoDeBanco** da classe Conta.
         void setCodigoDeBanco (const CodigoDeBanco &codigoDeBanco)
@@ -304,9 +306,14 @@ class Conta : public Entidade
         }
 
         ///O M�todo  tem a fun��o de atribuir um objeto da classe NumeroDeConta ao atributo **numeroDeConta** da classe Conta.
-         void setNumeroDeConta (const NumeroDeConta &numeroDeConta)
+        void setNumeroDeConta (const NumeroDeConta &numeroDeConta)
         {
             this->numeroDeConta = numeroDeConta;
+        }
+
+        void setDonoDaConta (Usuario * dono)
+        {
+            this->dono = dono;
         }
 
         ///O M�todo tem a fun��o de buscar o atributo **codigoDeBanco** da classe Conta, salvo a partir da atribui��o do objeto da classe CodigoDeBanco.
@@ -328,5 +335,10 @@ class Conta : public Entidade
         NumeroDeConta getNumeroDeConta()
         {
             return numeroDeConta;
+        }
+
+        Usuario * getDonoDaConta ()
+        {
+            return dono;
         }
 };

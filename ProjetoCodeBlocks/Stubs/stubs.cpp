@@ -32,7 +32,7 @@ bool StubCntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error
 }
 
 
-bool StubCntrUserServ::cadastrar(Usuario * usuario, Conta * conta1, Conta * conta2) throw(runtime_error)
+bool StubCntrUserServ::cadastrarUsuario(Usuario * usuario) throw(runtime_error)
 {
     if (usuario->getNome().getValor() == "Matheus")
     {
@@ -44,10 +44,42 @@ bool StubCntrUserServ::cadastrar(Usuario * usuario, Conta * conta1, Conta * cont
         throw runtime_error("Sistema temporariamente indisponivel...");
     }
 
-    else
+    return true;
+}
+
+
+
+bool StubCntrUserServ::cadastrarConta(Conta * conta) throw(runtime_error)
+{
+    if (conta->getCodigoDeBanco().getValor() == "123")
     {
-        return true;
+        return false;
     }
+
+    if (conta->getCodigoDeBanco().getValor() == "456")
+    {
+        throw runtime_error("Sistema temporariamente indisponivel...");
+    }
+
+    return true;
+}
+
+
+
+bool StubCntrUserServ::excluir(Email email) throw(runtime_error)
+{
+    // Para o serviço de exclusão, deve-se procurar a entidade usuário com o respectivo e-mail.
+    if (email.getValor() == "mat@costa")
+    {
+        return false;
+    }
+
+    if (email.getValor() == "email@exp")
+    {
+        throw runtime_error("Sistema temporariamente indisponivel...");
+    }
+
+    return true;
 }
 
 

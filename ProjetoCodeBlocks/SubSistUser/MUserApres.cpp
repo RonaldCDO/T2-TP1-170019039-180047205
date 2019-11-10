@@ -561,7 +561,7 @@ bool TelaDadosConta::novaConta(Conta * conta)
 
 void CntrUserApres::cadastrar() throw(runtime_error)
 {
-    // Dados do usuário.
+    // Obtenção dos dados do usuário.
     Usuario * usuario;
     usuario = new Usuario();
 
@@ -572,52 +572,113 @@ void CntrUserApres::cadastrar() throw(runtime_error)
         return;
     }
 
-    // Dados da conta corrente
+
+    // Dados da conta corrente principal
     Conta * conta1;
     conta1 = new Conta();
 
     TelaDadosConta telaConta;
 
-    if (!(telaConta.run(conta1)))
+    if (telaConta.run(conta1))
     {
+        conta1->setDonoDaConta(usuario);
+    }
+
+    else
+    {
+        delete conta1;
         return;
     }
+
+
+    // Verificação de resultados e exposição na tela.
+    int linha, coluna;
+    initscr();                                                                      
+    getmaxyx(stdscr,linha,coluna);
+
+    bool userCadastrado, contaCadastrada;
+
+    userCadastrado = cntrUserServ->cadastrarUsuario(usuario);
+
+    if (!userCadastrado)
+    {
+        char result[] = "Usuario ja existente no banco de dados.";
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+
+        noecho();                                                                       
+        getch();                                                                        
+        echo(); 
+        clear();
+        endwin();
+
+        return;
+    }
+
+    contaCadastrada = cntrUserServ->cadastrarConta(conta1);
+
+    if (!contaCadastrada)
+    {
+        char result[] = "Conta principal ja existente no banco de dados.";
+        char result2[] = "Nao foi possivel cadastrar usuario.";
+        
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+        mvprintw(linha/2 + 2,(coluna-strlen(result2))/2,"%s",result2);
+        
+        cntrUserServ->excluir(usuario->getEmail());
+
+        noecho();                                                                       
+        getch();                                                                        
+        echo(); 
+        clear();
+        endwin();
+
+        return;
+    }
+
 
     //Verificação da segunda conta corrente.
     Conta * conta2;
     conta2 = new Conta();
 
-    if (!telaConta.novaConta(conta2))
+    bool contaSecundariaObtida = false;
+
+    if (telaConta.novaConta(conta2))
     {
-        delete conta2;
-    }
-
-    // Após validar os valores.
-    bool cadastrado;
-
-    cadastrado = cntrUserServ->cadastrar(usuario, conta1, conta2);
-
-    int linha, coluna;
-    initscr();                                                                      // Inicia curses.
-    getmaxyx(stdscr,linha,coluna);
-
-    if (cadastrado)
-    {   
-        char cadastrado[] = "Usuario cadastrado com sucesso!";
-        mvprintw(linha/2,(coluna-strlen(cadastrado))/2,"%s",cadastrado);
+        conta2->setDonoDaConta(usuario);
+        contaSecundariaObtida = true;
     }
 
     else
     {
-        //cout << endl << "Usuario ja existente no banco de dados." << endl;
-        char cadastrado[] = "Usuario ja existente no banco de dados.";
-        mvprintw(linha/2,(coluna-strlen(cadastrado))/2,"%s",cadastrado);
+        delete conta2;
     }
 
-    noecho();                                                                       // Desabilita eco.
-    getch();                                                                        // L� caracter digitado.
+    if (contaSecundariaObtida)
+    {
+        bool contaSecundariaCadastrada = cntrUserServ->cadastrarConta(conta2);
+
+        if (!contaSecundariaCadastrada)
+        {
+            char result[] = "Conta secundaria ja existente no banco de dados.";
+            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+
+            noecho();                                                                       
+            getch();                                                                        
+            echo(); 
+            clear();
+        }
+    }
+
+    if (userCadastrado & contaCadastrada) 
+    {
+        char result[] = "Usuario cadastrado com sucesso!";
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+    }
+
+    noecho();                                                                       
+    getch();                                                                        
     echo(); 
-    clear();                                                                            // Habilita eco.
+    clear();
     endwin();
 
     return;

@@ -45,7 +45,9 @@ class IUserApres
 class IUserServ
 {
     public:
-        virtual bool cadastrar(Usuario * usuario, Conta * conta1, Conta * conta2) throw(runtime_error) = 0;
+        virtual bool cadastrarUsuario(Usuario * usuario) throw(runtime_error) = 0;
+        virtual bool cadastrarConta(Conta * conta) throw(runtime_error) = 0;
+        virtual bool excluir(Email email) throw(runtime_error) = 0;
 
         virtual ~IUserServ(){}
 };
