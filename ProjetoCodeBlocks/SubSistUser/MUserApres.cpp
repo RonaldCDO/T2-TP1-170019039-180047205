@@ -1,4 +1,5 @@
 #include "MUserApres.hpp"
+//#include "containers.hpp"
 
 using namespace std;
 
@@ -612,8 +613,9 @@ void CntrUserApres::cadastrar() throw(runtime_error)
         return;
     }
 
-    contaCadastrada = cntrUserServ->cadastrarConta(conta1);
+    cntrUserServ->cadastrarConta(conta1);
 
+/*
     if (!contaCadastrada)
     {
         char result[] = "Conta principal ja existente no banco de dados.";
@@ -632,6 +634,7 @@ void CntrUserApres::cadastrar() throw(runtime_error)
 
         return;
     }
+*/
 
 
     //Verificação da segunda conta corrente.
@@ -653,8 +656,8 @@ void CntrUserApres::cadastrar() throw(runtime_error)
 
     if (contaSecundariaObtida)
     {
-        bool contaSecundariaCadastrada = cntrUserServ->cadastrarConta(conta2);
-
+        cntrUserServ->cadastrarConta(conta2);
+/*
         if (!contaSecundariaCadastrada)
         {
             char result[] = "Conta secundaria ja existente no banco de dados.";
@@ -665,9 +668,10 @@ void CntrUserApres::cadastrar() throw(runtime_error)
             echo(); 
             clear();
         }
+*/
     }
 
-    if (userCadastrado & contaCadastrada) 
+    if (userCadastrado) 
     {
         char result[] = "Usuario cadastrado com sucesso!";
         mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
@@ -678,6 +682,22 @@ void CntrUserApres::cadastrar() throw(runtime_error)
     echo(); 
     clear();
     endwin();
+
+/*
+    // Testando lista
+    ContainerUsuarios * userRepo;
+    userRepo = ContainerUsuarios::instanciar();
+
+    if (userRepo->obterUsuario(usuario->getEmail()))
+    {
+        cout << "Deu Certo!!" << endl;
+    }
+
+    else
+    {
+        cout << "chora.." << endl; 
+    }
+*/ 
 
     return;
 }

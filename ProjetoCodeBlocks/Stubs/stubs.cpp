@@ -48,7 +48,7 @@ bool StubCntrUserServ::cadastrarUsuario(Usuario * usuario) throw(runtime_error)
 }
 
 
-
+/*
 bool StubCntrUserServ::cadastrarConta(Conta * conta) throw(runtime_error)
 {
     if (conta->getCodigoDeBanco().getValor() == "123")
@@ -63,7 +63,7 @@ bool StubCntrUserServ::cadastrarConta(Conta * conta) throw(runtime_error)
 
     return true;
 }
-
+*/
 
 
 bool StubCntrUserServ::excluir(Email email) throw(runtime_error)

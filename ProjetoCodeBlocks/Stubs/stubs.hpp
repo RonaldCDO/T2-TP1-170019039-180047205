@@ -18,7 +18,7 @@ class StubCntrUserServ : public IUserServ
 {
     public:
         bool cadastrarUsuario (Usuario * usuario) throw(runtime_error);
-        bool cadastrarConta (Conta * conta) throw(runtime_error);
+        //bool cadastrarConta (Conta * conta) throw(runtime_error);
         bool excluir (Email email) throw(runtime_error);
 };
 

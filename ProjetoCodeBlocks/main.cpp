@@ -7,9 +7,13 @@
 
 #include "dominios.hpp"
 #include "entidades.hpp"
+
 #include "MAutApres.hpp"
 #include "MUserApres.hpp"
 #include "MRidApres.hpp"
+#include "MUserServ.hpp"
+
+#include "containers.hpp"
 #include "stubs.hpp"
 
 using namespace std;
@@ -52,18 +56,21 @@ int main()
 */
 
     //////// Teste da Controladora de Apresentação de Usuário ////////
-/*
-    IUserServ * stubServ;
-    stubServ = new StubCntrUserServ;
+
+    //IUserServ * stubServ;
+    //stubServ = new StubCntrUserServ();
+
+    IUserServ * cntrUserServ;
+    cntrUserServ = new CntrUserServ();
 
     CntrUserApres controladoraU;
 
-    controladoraU.setCntrUserServ(stubServ);
-
+    controladoraU.setCntrUserServ(cntrUserServ);
+/*
     Email * email;
     email = new Email();
     email->setValor("mat@costa");
-
+*/
     try
     {
         controladoraU.cadastrar();
@@ -87,11 +94,11 @@ int main()
         clear();                                                                       
         endwin();
     }
-*/
+
 
 
     //////// Teste da Controladora de Apresentação de Carona ////////
-
+/*
     IRidServ * stubServ;
     stubServ = new StubCntrRidServ();
 
@@ -122,6 +129,7 @@ int main()
         clear();                                                                       
         endwin();
     }
+*/
 
     return 0;
 }

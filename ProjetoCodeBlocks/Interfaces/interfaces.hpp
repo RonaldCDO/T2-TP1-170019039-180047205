@@ -46,7 +46,7 @@ class IUserServ
 {
     public:
         virtual bool cadastrarUsuario(Usuario * usuario) throw(runtime_error) = 0;
-        virtual bool cadastrarConta(Conta * conta) throw(runtime_error) = 0;
+        virtual void cadastrarConta(Conta * conta) throw(runtime_error) = 0;
         virtual bool excluir(Email email) throw(runtime_error) = 0;
 
         virtual ~IUserServ(){}
