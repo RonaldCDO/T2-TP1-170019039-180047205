@@ -98,10 +98,25 @@ bool ContainerCaronas::verificarConflitoDeData (Usuario * usuario, Carona * caro
     return true;
 }
 
-/*
-void ContainerCaronas::verifConflitoData (Carona carona)
+
+
+bool ContainerReservas::RepositorioCriado = false;
+ContainerReservas * ContainerReservas::refContReserva = 0;
+
+
+ContainerReservas * ContainerReservas::instanciar()
 {
-    for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
+    if (!RepositorioCriado)
     {
+        refContReserva = new ContainerReservas();
+        RepositorioCriado = true;
+    }
+
+    return refContReserva;
 }
-*/
+
+
+void ContainerReservas::inserir(Reserva reserva)
+{
+    repositorioReservas.push_back(reserva);
+}

@@ -65,3 +65,20 @@ class ContainerCaronas
         void inserir(Carona carona);
         bool verificarConflitoDeData (Usuario * usuario, Carona * carona);
 };
+
+
+class ContainerReservas
+{
+    private:
+        static ContainerReservas * refContReserva;
+        static bool RepositorioCriado;
+
+        ContainerReservas(){}
+        
+        vector<Reserva> repositorioReservas;
+
+    public:
+        static ContainerReservas * instanciar();
+
+        void inserir(Reserva reserva);
+};

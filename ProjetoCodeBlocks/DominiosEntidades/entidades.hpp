@@ -92,58 +92,6 @@ class Usuario : public Entidade
 
 
 
-///A Entidade **Reserva** � uma abstra��o para o registro de um usu�rio em uma carona do sistema, a qual � indentificada por objetos das classe Codigo, Assento e Bagagem.
-class Reserva : public Entidade
-{
-    private:
-
-        CodigoDeReserva codigo;
-        Assento assento;
-        Bagagem bagagem;
-
-    public:
-        ///O M�todo  tem a fun��o de atribuir um objeto da classe CodigoDeReserva ao atributo **codigo** da classe Reserva.
-        void setCodigoDeReserva (const CodigoDeReserva &codigo)
-        {
-            this->codigo = codigo;
-        }
-
-        ///O M�todo  tem a fun��o de atribuir um objeto da classe Assento ao atributo **assento** da classe Reserva.
-        void setAssento (const Assento &assento)
-        {
-            this->assento = assento;
-        }
-
-        ///O M�todo  tem a fun��o de atribuir um objeto da classe Bagagem ao atributo **bagagem** da classe Reserva.
-        void setBagagem (const Bagagem &bagagem)
-        {
-            this->bagagem = bagagem;
-        }
-
-        ///O M�todo tem a fun��o de buscar o atributo **codigo** da classe Reserva, salvo a partir da atribui��o do objeto da classe CodigoDeReserva.
-        ///Retorna o atributo **codigo** da classe Reserva.
-        CodigoDeReserva getCodigoDeReserva()
-        {
-            return codigo;
-        }
-
-        ///O M�todo tem a fun��o de buscar o atributo **assento** da classe Reserva, salvo a partir da atribui��o do objeto da classe Assento.
-        ///Retorna o atributo **assento** da classe Reserva.
-        Assento getAssento()
-        {
-            return assento;
-        }
-
-        ///O M�todo tem a fun��o de buscar o atributo **bagagem** da classe Reserva, salvo a partir da atribui��o do objeto da classe Bagagem.
-        ///Retorna o atributo **bagagem** da classe Reserva.
-        Bagagem getBagagem ()
-        {
-            return bagagem;
-        }
-};
-
-
-
 ///A Entidade **Carona** � uma abstra��o para o evento principal do sistema de carona, o qual � indentificada pelos objetos codigo, cidadeDeOrigem, estadoDeOrigem,
 ///cidadeDeDestino, estadoDeDestino, data, duracao, vagas, preco.
 class Carona : public Entidade
@@ -291,6 +239,79 @@ class Carona : public Entidade
         }
 };
 
+
+///A Entidade **Reserva** � uma abstra��o para o registro de um usu�rio em uma carona do sistema, a qual � indentificada por objetos das classe Codigo, Assento e Bagagem.
+class Reserva : public Entidade
+{
+    private:
+
+        CodigoDeReserva codigo;
+        Assento assento;
+        Bagagem bagagem;
+
+        Usuario * cliente;
+        Carona * caronaAssociada;
+
+    public:
+        ///O M�todo  tem a fun��o de atribuir um objeto da classe CodigoDeReserva ao atributo **codigo** da classe Reserva.
+        void setCodigoDeReserva (const CodigoDeReserva &codigo)
+        {
+            this->codigo = codigo;
+        }
+
+        ///O M�todo  tem a fun��o de atribuir um objeto da classe Assento ao atributo **assento** da classe Reserva.
+        void setAssento (const Assento &assento)
+        {
+            this->assento = assento;
+        }
+
+        ///O M�todo  tem a fun��o de atribuir um objeto da classe Bagagem ao atributo **bagagem** da classe Reserva.
+        void setBagagem (const Bagagem &bagagem)
+        {
+            this->bagagem = bagagem;
+        }
+
+        void setCliente(Usuario * cliente)
+        {
+            this->cliente = cliente;
+        }
+
+        void setCaronaAssociada(Carona * carona)
+        {
+            this->caronaAssociada = caronaAssociada;
+        }
+
+        ///O M�todo tem a fun��o de buscar o atributo **codigo** da classe Reserva, salvo a partir da atribui��o do objeto da classe CodigoDeReserva.
+        ///Retorna o atributo **codigo** da classe Reserva.
+        CodigoDeReserva getCodigoDeReserva()
+        {
+            return codigo;
+        }
+
+        ///O M�todo tem a fun��o de buscar o atributo **assento** da classe Reserva, salvo a partir da atribui��o do objeto da classe Assento.
+        ///Retorna o atributo **assento** da classe Reserva.
+        Assento getAssento()
+        {
+            return assento;
+        }
+
+        ///O M�todo tem a fun��o de buscar o atributo **bagagem** da classe Reserva, salvo a partir da atribui��o do objeto da classe Bagagem.
+        ///Retorna o atributo **bagagem** da classe Reserva.
+        Bagagem getBagagem ()
+        {
+            return bagagem;
+        }
+
+        Usuario * getCliente()
+        {
+            return cliente;
+        }
+
+        Carona * getCarona()
+        {
+            return caronaAssociada;
+        }
+};
 
 
 
