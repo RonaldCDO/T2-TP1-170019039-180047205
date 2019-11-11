@@ -109,6 +109,8 @@ int main()
         clear();
 
         controladoraR.cadastrarCarona(email);
+
+        controladoraR.reservarCarona(email);
         
     }
     catch (const runtime_error& exp)

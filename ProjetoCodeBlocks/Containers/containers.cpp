@@ -61,6 +61,35 @@ void ContainerContas::inserir (Conta conta)
 }
 
 
+bool ContainerContas::obterConta (Usuario usuario, Conta * conta1, Conta * conta2)
+{
+    bool contaEncontrada = false;
+
+    for (vector<Conta>::iterator conta = repositorioContas.begin(); conta != repositorioContas.end(); conta++)
+    {
+        if (conta->getDonoDaConta()->getEmail().getValor() == usuario.getEmail().getValor())
+        {
+            if (!contaEncontrada)
+            {
+                *conta1 = *conta;
+                contaEncontrada = true;
+            }
+            else
+            {
+                *conta2 = *conta;
+            }
+        }
+    }
+    if (contaEncontrada)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+
+
 bool ContainerCaronas::RepositorioCriado = false;
 ContainerCaronas * ContainerCaronas::refContCarona = 0;
 
@@ -99,9 +128,22 @@ bool ContainerCaronas::verificarConflitoDeData (Usuario * usuario, Carona * caro
 }
 
 
+Carona ContainerCaronas::buscarCarona (CodigoDeCarona * rideCode)
+{
+    for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
+    {
+        if (ride->getCodigoDeCarona().getValor() == rideCode->getValor())
+        {
+            return *ride;
+        }
+    }
+} 
+
+
 
 bool ContainerReservas::RepositorioCriado = false;
 ContainerReservas * ContainerReservas::refContReserva = 0;
+int ContainerReservas::ultimaReservaCriada = 10000;
 
 
 ContainerReservas * ContainerReservas::instanciar()

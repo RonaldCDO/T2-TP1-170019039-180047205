@@ -788,7 +788,7 @@ void CntrRidApres::descadastrarCarona() throw(runtime_error)
 }
 
 
-void CntrRidApres::reservarCarona() throw(runtime_error)
+void CntrRidApres::reservarCarona(Email * email) throw(runtime_error)
 {
     CodigoDeCarona * rideCode;
     rideCode = new CodigoDeCarona();
@@ -809,19 +809,22 @@ void CntrRidApres::reservarCarona() throw(runtime_error)
     CodigoDeReserva * reservaCode;
     reservaCode = new CodigoDeReserva();
 
-    Conta * prestador;
-    prestador = new Conta();
+    Conta * conta1;
+    conta1 = new Conta();
+
+    Conta * conta2 = 0;
+    conta2 = new Conta();
 
     int linha, coluna;
     initscr();
     getmaxyx(stdscr,linha,coluna);
 
-    if (cntrRidServ->efetuarReserva(rideCode, assentoPref, qtdBagagem, reservaCode, prestador))
+    if (cntrRidServ->efetuarReserva(rideCode, assentoPref, qtdBagagem, reservaCode, conta1, conta2, email))
     {
         string valorReservaCode = reservaCode->getValor();
-        string valorCodigoDeBanco = prestador->getCodigoDeBanco().getValor();
-        string valorNumeroDeAgencia = prestador->getNumeroDeAgencia().getValor();
-        string valorNumeroDaConta = prestador->getNumeroDeConta().getValor();
+        string valorCodigoDeBanco = conta1->getCodigoDeBanco().getValor();
+        string valorNumeroDeAgencia = conta1->getNumeroDeAgencia().getValor();
+        string valorNumeroDaConta = conta1->getNumeroDeConta().getValor();
 
         string result1_str = "Reserva efetuada com sucesso!";
         string result2_str = "O codigo da reserva é " + valorReservaCode + ".";

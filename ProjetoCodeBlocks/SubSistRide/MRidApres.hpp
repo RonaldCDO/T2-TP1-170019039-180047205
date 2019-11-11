@@ -19,7 +19,7 @@ class CntrRidApres : public IRidApres
 
         void descadastrarCarona() throw(runtime_error);
 
-        void reservarCarona() throw(runtime_error);
+        void reservarCarona(Email * email) throw(runtime_error);
 };
 
 

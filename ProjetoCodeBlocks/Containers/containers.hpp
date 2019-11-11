@@ -45,7 +45,7 @@ class ContainerContas
         static ContainerContas * instanciar();
 
         void inserir(Conta conta);
-        //bool obterConta (Conta conta);
+        bool obterConta (Usuario usuario, Conta * conta1, Conta * conta2); //Se true, possui duas contas.
 };
 
 
@@ -64,6 +64,7 @@ class ContainerCaronas
 
         void inserir(Carona carona);
         bool verificarConflitoDeData (Usuario * usuario, Carona * carona);
+        Carona buscarCarona (CodigoDeCarona * rideCode);
 };
 
 
@@ -78,6 +79,8 @@ class ContainerReservas
         vector<Reserva> repositorioReservas;
 
     public:
+        static int ultimaReservaCriada;
+
         static ContainerReservas * instanciar();
 
         void inserir(Reserva reserva);

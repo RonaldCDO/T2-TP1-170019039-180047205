@@ -60,7 +60,7 @@ class IRidApres
     public:
         virtual void cadastrarCarona(Email * email) throw(runtime_error) = 0;
         virtual void descadastrarCarona() throw(runtime_error) = 0;
-        virtual void reservarCarona() throw(runtime_error) = 0;
+        virtual void reservarCarona(Email * email) throw(runtime_error) = 0;
 
         virtual ~IRidApres(){}
 };
@@ -72,7 +72,7 @@ class IRidServ
     public:
         virtual bool cadastrarCarona (Carona * carona, Email * email) throw(runtime_error) = 0;
         virtual bool descadastrarCarona (CodigoDeCarona codigo) throw(runtime_error) = 0;
-        virtual bool efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, Conta * prestador) throw(runtime_error) = 0; 
+        virtual bool efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, Conta * conta1, Conta * conta2, Email * email) throw(runtime_error) = 0; 
 
         virtual ~IRidServ(){}
 };
