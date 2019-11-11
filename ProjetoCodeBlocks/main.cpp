@@ -21,45 +21,40 @@ using namespace std;
 
 int main()
 {
-    //////// Teste da Controladora de Apresentação da Autenticação ////////
 /*
-    IAutServ * stubAut;
-    stubAut = new StubCntrAutServ();
-    IRidServ * stubRid;
-    stubRid = new StubCntrRidServ();
+    ContainerUsuarios * userRepo;
+    userRepo = ContainerUsuarios::instanciar();
 
-    CntrAutApres caa;
-    CntrRidApres raa;
+    Usuario user;
 
-    Email * email;
-    email = new Email();
+    Nome nome;
+    Telefone telefone;
+    Email email;
+    Senha senha;
+    CPF cpf;
 
-    bool autenticado;
+    nome.setValor("Mat");
+    telefone.setValor("12-32-123456789");
+    email.setValor("mat@costa");
+    senha.setValor("123qw");
+    cpf.setValor("052.576.591-31");
 
-    caa.setCntrAutServ(stubAut);
-    raa.setCntrRidServ(stubRid);
+    user.setNome(nome);
+    user.setTelefone(telefone);
+    user.setEmail(email);
+    user.setSenha(senha);
+    user.setCPF(cpf);
 
-    try
-    {
-        autenticado = caa.autenticar(email);
+    userRepo->inserir(user);
 
-        if (autenticado)
-        {
-            cout << "Autenticação com sucesso!" << endl;
-        }
-        else
-            cout << "Autenticação com falha!" << endl;
-    }
-    catch (const runtime_error& exp)
-    {
-        cout << exp.what() << endl;
-    }
+    Usuario user2;
+
+    user2 = userRepo->obterUsuario (user.getEmail());
+
+    cout << user2.getCPF().getValor() << endl;
 */
 
     //////// Teste da Controladora de Apresentação de Usuário ////////
-
-    //IUserServ * stubServ;
-    //stubServ = new StubCntrUserServ();
 
     IAutServ * cntrAutServ;
     cntrAutServ = new CntrAutServ();
@@ -113,6 +108,8 @@ int main()
     getch();
     clear();                                                           
     endwin();
+
+
 
     //////// Teste da Controladora de Apresentação de Carona ////////
 /*

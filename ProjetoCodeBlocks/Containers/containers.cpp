@@ -24,17 +24,15 @@ void ContainerUsuarios::inserir (Usuario usuario)
 }
 
 
-bool ContainerUsuarios::obterUsuario (Email email)
+Usuario ContainerUsuarios::obterUsuario (Email email)
 {
     for (vector<Usuario>::iterator user = repositorioUsuarios.begin(); user != repositorioUsuarios.end(); user++)
     {
         if (user->getEmail().getValor() == email.getValor())
         {
-            return true;
+            return *user;
         }
     }
-
-    return false;
 }
 
 
@@ -49,6 +47,8 @@ bool ContainerUsuarios::compararEmailSenha (Email email, Senha senha)
     }
     return false;
 }
+
+
 
 bool ContainerContas::RepositorioCriado = false;
 ContainerContas * ContainerContas::refContConta = 0;
@@ -71,17 +71,32 @@ void ContainerContas::inserir (Conta conta)
     repositorioContas.push_back(conta);
 }
 
-/*
-void ContainerContas::obterConta (Conta conta)
+
+bool ContainerCaronas::RepositorioCriado = false;
+ContainerCaronas * ContainerCaronas::refContCarona = 0;
+
+
+ContainerCaronas * ContainerCaronas::instanciar()
 {
-    for (vector<Usuario>::iterator user = repositorioUsuarios.begin(); user != repositorioUsuarios.end(); user++)
+    if (!RepositorioCriado)
     {
-        if (user->getEmail().getValor() == email.getValor())
-        {
-            return true;
-        }
+        refContCarona = new ContainerCaronas();
+        RepositorioCriado = true;
     }
 
-    return false;
+    return refContCarona;
+}
+
+
+void ContainerCaronas::inserir (Carona carona)
+{
+    repositorioCaronas.push_back(carona);
+}
+
+/*
+void ContainerCaronas::verifConflitoData (Carona carona)
+{
+    for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
+    {
 }
 */

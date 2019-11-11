@@ -160,6 +160,8 @@ class Carona : public Entidade
         Vagas vagas;
         Preco preco;
 
+        Usuario * provedor;
+
     public:
         ///O M�todo  tem a fun��o de atribuir um objeto da classe CodigoDeCarona ao atributo **codigo** da classe Carona.
         void setCodigoDeCarona (const CodigoDeCarona &codigo)
@@ -213,6 +215,11 @@ class Carona : public Entidade
         void setPreco (const Preco &preco)
         {
             this->preco = preco;
+        }
+
+        void setProvedorDaCarona (Usuario * provedor)
+        {
+            this->provedor = provedor;
         }
 
         ///O M�todo tem a fun��o de buscar o atributo **codigo** da classe Carona, salvo a partir da atribui��o do objeto da classe CodigoDeCarona.
@@ -276,6 +283,11 @@ class Carona : public Entidade
         Preco getPreco()
         {
             return preco;
+        }
+
+        Usuario * getProvedorDaCarona ()
+        {
+            return provedor;
         }
 };
 

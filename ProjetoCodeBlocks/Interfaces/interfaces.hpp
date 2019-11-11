@@ -58,7 +58,7 @@ class IUserServ
 class IRidApres
 {
     public:
-        virtual void cadastrarCarona() throw(runtime_error) = 0;
+        virtual void cadastrarCarona(Email * email) throw(runtime_error) = 0;
         virtual void descadastrarCarona() throw(runtime_error) = 0;
         virtual void reservarCarona() throw(runtime_error) = 0;
 

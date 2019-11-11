@@ -654,7 +654,7 @@ bool TelaDadosReserva::run(CodigoDeCarona * rideCode, Assento * seat, Bagagem * 
 }
 
 
-void CntrRidApres::cadastrarCarona() throw(runtime_error)
+void CntrRidApres::cadastrarCarona(Email * email) throw(runtime_error)
 {
     // Obtenção dos dados de Carona.
     Carona * carona;

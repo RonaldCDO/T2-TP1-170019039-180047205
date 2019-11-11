@@ -26,7 +26,7 @@ class ContainerUsuarios
         static ContainerUsuarios * instanciar();
 
         void inserir(Usuario usuario);
-        bool obterUsuario (Email email);
+        Usuario obterUsuario (Email email);
         bool compararEmailSenha (Email email, Senha senha);
 };
 
@@ -47,4 +47,22 @@ class ContainerContas
 
         void inserir(Conta conta);
         //bool obterConta (Conta conta);
+};
+
+
+class ContainerCaronas
+{
+    private:
+        static ContainerCaronas * refContCarona;
+        static bool RepositorioCriado;
+
+        ContainerCaronas(){}
+        
+        vector<Carona> repositorioCaronas;
+
+    public:
+        static ContainerCaronas * instanciar();
+
+        void inserir(Carona carona);
+        //bool verifConflitoData(Carona carona);
 };
