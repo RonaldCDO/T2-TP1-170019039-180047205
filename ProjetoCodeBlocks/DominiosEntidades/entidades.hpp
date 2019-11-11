@@ -307,7 +307,7 @@ class Reserva : public Entidade
             return cliente;
         }
 
-        Carona * getCarona()
+        Carona * getCaronaAssociada()
         {
             return caronaAssociada;
         }
