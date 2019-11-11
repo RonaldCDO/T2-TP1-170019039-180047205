@@ -19,74 +19,107 @@
 	<string>
 	<stdexcept>
 
-1573217944 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\main.cpp
+1573499972 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\main.cpp
 	<iostream>
 	<string.h>
+	<string>
+	<string.h>
+	<curses.h>
 	"dominios.hpp"
 	"entidades.hpp"
 	"MAutApres.hpp"
 	"MUserApres.hpp"
 	"MRidApres.hpp"
+	"MUserServ.hpp"
+	"MAutServ.hpp"
+	"MRidServ.hpp"
+	"containers.hpp"
 	"stubs.hpp"
 
-1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\dominios.cpp
+1573490167 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\dominios.cpp
 	"dominios.hpp"
 	<vector>
 	<algorithm>
 	<sstream>
 
-1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\dominios.hpp
+1573490167 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\dominios.hpp
 	<iostream>
 	<string>
 	<stdexcept>
 
-1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\entidades.cpp
+1573490167 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\entidades.cpp
 	"entidades.hpp"
 
-1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\entidades.hpp
+1573490167 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\dominiosentidades\entidades.hpp
 	"dominios.hpp"
 	<iostream>
 	<string>
 	<stdexcept>
 
-1572899164 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.hpp
+1573490167 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.hpp
 	"interfaces.hpp"
 
-1573217623 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\interfaces\interfaces.hpp
+1573500981 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\interfaces\interfaces.hpp
 	<iostream>
 	<curses.h>
+	<string.h>
+	<string>
+	<vector>
 	"dominios.hpp"
 	"entidades.hpp"
 
-1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserapres.hpp
+1573490167 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserapres.hpp
 	"interfaces.hpp"
 
-1573219019 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.hpp
+1573501014 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.hpp
 	"interfaces.hpp"
 
-1573218161 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.cpp
+1573501027 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\stubs\stubs.cpp
 	"stubs.hpp"
 
-1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautserv.cpp
+1573490167 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautserv.cpp
 	"MAutServ.hpp"
+	"containers.hpp"
 
-1572886222 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautserv.hpp
+1573490167 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautserv.hpp
 	"interfaces.hpp"
 
-1572886222 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserapres.cpp
+1573490167 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserapres.cpp
 	"MUserApres.hpp"
 
-1572890429 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.cpp
-	<string.h>
+1573490167 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistautentic\mautapres.cpp
 	"MAutApres.hpp"
 	<curses.h>
+	<string.h>
+	<string>
 
-1572893257 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridserv.cpp
-	"MRidApres.hpp"
+1573499972 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridserv.cpp
+	"MRidServ.hpp"
+	"containers.hpp"
 
-1573217623 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.hpp
+1573499972 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.hpp
 	"interfaces.hpp"
 
-1573128161 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.cpp
+1573499972 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridapres.cpp
 	"MRidApres.hpp"
+
+1573500167 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\containers\containers.cpp
+	"containers.hpp"
+
+1573500167 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\containers\containers.hpp
+	<iostream>
+	<string>
+	<vector>
+	"dominios.hpp"
+	"entidades.hpp"
+
+1573502255 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserserv.hpp
+	"interfaces.hpp"
+
+1573500997 c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistride\mridserv.hpp
+	"interfaces.hpp"
+
+1573500788 source:c:\users\dell\documents\repositório - tp1\tp1-2\projetocodeblocks\subsistuser\muserserv.cpp
+	"MUserServ.hpp"
+	"containers.hpp"
 
