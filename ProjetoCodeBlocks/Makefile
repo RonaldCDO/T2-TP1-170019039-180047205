@@ -7,10 +7,10 @@ STUB = -I ./Stubs/
 REPO = -I ./Containers/
 LDLIBS = -lncurses
 
-executable: main.o dominios.o entidades.o stubs.o MAutApres.o MUserApres.o MRidApres.o MUserServ.o containers.o
-	g++ main.o entidades.o dominios.o stubs.o MAutApres.o MUserApres.o MRidApres.o containers.o MUserServ.o -o executable -lncurses
+executable: main.o dominios.o entidades.o stubs.o MAutApres.o MUserApres.o MRidApres.o MUserServ.o MAutServ.o containers.o
+	g++ main.o entidades.o dominios.o stubs.o MAutApres.o MUserApres.o MRidApres.o containers.o MUserServ.o MAutServ.o -o executable -lncurses
 
-main.o: main.cpp DominiosEntidades/dominios.hpp DominiosEntidades/entidades.hpp SubSistAutentic/MAutApres.hpp SubSistUser/MUserApres.hpp SubSistRide/MRidApres.hpp Stubs/stubs.hpp SubSistUser/MUserServ.hpp Containers/containers.hpp
+main.o: main.cpp DominiosEntidades/dominios.hpp DominiosEntidades/entidades.hpp SubSistAutentic/MAutApres.hpp SubSistUser/MUserApres.hpp SubSistRide/MRidApres.hpp Stubs/stubs.hpp SubSistUser/MUserServ.hpp SubSistAutentic/MAutServ.hpp Containers/containers.hpp
 	g++ $(DE) $(SA) $(SU) $(STUB) $(SR) $(INT) $(REPO) -c main.cpp
 
 stubs.o: Stubs/stubs.cpp Stubs/stubs.hpp Interfaces/interfaces.hpp
@@ -18,6 +18,9 @@ stubs.o: Stubs/stubs.cpp Stubs/stubs.hpp Interfaces/interfaces.hpp
 
 MUserServ.o: SubSistUser/MUserServ.cpp SubSistUser/MUserServ.hpp Containers/containers.hpp
 	g++ $(INT) $(REPO) $(DE) -c SubSistUser/MUserServ.cpp
+
+MAutServ.o: SubSistAutentic/MAutServ.cpp SubSistAutentic/MAutServ.hpp Containers/containers.hpp
+	g++ $(INT) $(REPO) $(DE) -c SubSistAutentic/MAutServ.cpp
 
 MRidApres.o: SubSistRide/MRidApres.cpp SubSistRide/MRidApres.hpp Interfaces/interfaces.hpp
 	g++ $(INT) $(SR) $(DE) $(REPO) -c SubSistRide/MRidApres.cpp

@@ -4,10 +4,10 @@
 
 using namespace std;
 
-/*
-class StubCntrAutServ : public IAutServ
+
+class CntrAutServ : public IAutServ
 {
     public:
-        bool autenticar (Email * email, Senha senha) throw(runtime_error);
+        bool autenticar(Email * email, Senha senha) throw(runtime_error);
 };
-*/
+

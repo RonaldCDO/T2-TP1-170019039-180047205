@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include <list>
+//#include <list>
 #include <vector>
 
 #include "dominios.hpp"
@@ -27,6 +27,7 @@ class ContainerUsuarios
 
         void inserir(Usuario usuario);
         bool obterUsuario (Email email);
+        bool compararEmailSenha (Email email, Senha senha);
 };
 
 

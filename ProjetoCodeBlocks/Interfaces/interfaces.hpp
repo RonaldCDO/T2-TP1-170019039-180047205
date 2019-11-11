@@ -4,6 +4,7 @@
 #include <curses.h>
 #include <string.h>
 #include <string>
+#include <vector>
 
 #include "dominios.hpp"
 #include "entidades.hpp"

@@ -38,6 +38,17 @@ bool ContainerUsuarios::obterUsuario (Email email)
 }
 
 
+bool ContainerUsuarios::compararEmailSenha (Email email, Senha senha)
+{
+    for (vector<Usuario>::iterator user = repositorioUsuarios.begin(); user != repositorioUsuarios.end(); user++)
+    {
+        if ((user->getEmail().getValor() == email.getValor()) && (user->getSenha().getValor() == senha.getValor()))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 bool ContainerContas::RepositorioCriado = false;
 ContainerContas * ContainerContas::refContConta = 0;

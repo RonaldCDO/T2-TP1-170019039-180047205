@@ -8,12 +8,12 @@ bool CntrUserServ::cadastrarUsuario (Usuario * usuario) throw(runtime_error)
 {
     ContainerUsuarios * userRepo;
     userRepo = ContainerUsuarios::instanciar();
-
-    if (userRepo->obterUsuario(usuario->getEmail()))
+/*
+    if (userRepo->obterUsuario(usuario->getEmail())->getEmail().getValor() == usuario->getEmail().getValor())
     {
         return false;
     }
-
+*/
     userRepo->inserir(*usuario);
 
     return true;

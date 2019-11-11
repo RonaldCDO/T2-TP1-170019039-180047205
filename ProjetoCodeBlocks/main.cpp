@@ -12,6 +12,7 @@
 #include "MUserApres.hpp"
 #include "MRidApres.hpp"
 #include "MUserServ.hpp"
+#include "MAutServ.hpp"
 
 #include "containers.hpp"
 #include "stubs.hpp"
@@ -60,42 +61,58 @@ int main()
     //IUserServ * stubServ;
     //stubServ = new StubCntrUserServ();
 
+    IAutServ * cntrAutServ;
+    cntrAutServ = new CntrAutServ();
+
     IUserServ * cntrUserServ;
     cntrUserServ = new CntrUserServ();
 
+    CntrAutApres controladoraA;
     CntrUserApres controladoraU;
 
+    controladoraA.setCntrAutServ(cntrAutServ);
     controladoraU.setCntrUserServ(cntrUserServ);
-/*
+
     Email * email;
     email = new Email();
-    email->setValor("mat@costa");
-*/
+    //email->setValor("mat@costa");
+
+
+    int linha, coluna;
+    initscr();
+    getmaxyx(stdscr,linha,coluna); 
+
     try
     {
         controladoraU.cadastrar();
-        //controladoraU.excluir(email);
+
+        if (controladoraA.autenticar(email))
+        {
+            char result[] = "Bem-vindo ao sistema!";
+            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+        }
+        else
+        {
+            char result[] = "Nao foi possivel aitenticar";
+            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+        }
+        
+
+        
     }
     catch (const runtime_error& exp)
-    {
-        int linha, coluna;
-        initscr();
-        getmaxyx(stdscr,linha,coluna);  
-    
+    {    
         //Bloco para transformar uma 'string' em uma array de chars 
         string erro = exp.what();
         char expArg[erro.length() + 1];
         strcpy(expArg, erro.c_str());
 
         mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
-        noecho();                                                                       
-        getch();                                                                        
-        echo();  
-        clear();                                                                       
-        endwin();
     }
 
-
+    getch();
+    clear();                                                           
+    endwin();
 
     //////// Teste da Controladora de Apresentação de Carona ////////
 /*
