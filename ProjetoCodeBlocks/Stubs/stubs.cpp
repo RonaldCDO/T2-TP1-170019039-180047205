@@ -83,7 +83,7 @@ bool StubCntrUserServ::excluir(Email email) throw(runtime_error)
 }
 
 
-bool StubCntrRidServ::cadastrarCarona(Carona * carona) throw(runtime_error)
+bool StubCntrRidServ::cadastrarCarona(Carona * carona, Email * email) throw(runtime_error)
 {
     if(carona->getCidadeDeDestino().getValor() == "Brasilia")
     {
@@ -127,7 +127,7 @@ bool StubCntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat,
         throw runtime_error("Sistema temporariamente indisponivel...");
     }
 
-    
+
     Reserva * reserva;
     reserva = new Reserva();
 
@@ -151,5 +151,5 @@ bool StubCntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat,
     prestador->setNumeroDeAgencia(numeroDeAgencia);
     prestador->setNumeroDeConta(numeroDeConta);
 
-    return true;   
+    return true;
 }

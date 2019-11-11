@@ -22,6 +22,7 @@
 					<Add directory="SubSistAutentic" />
 					<Add directory="SubSistUser" />
 					<Add directory="SubSistRide" />
+					<Add directory="Containers" />
 				</Compiler>
 				<Linker>
 					<Add library="../../../../../../Program Files (x86)/CodeBlocks/MinGW/lib/pdcurses.lib" />
@@ -44,6 +45,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Containers/containers.cpp" />
+		<Unit filename="Containers/containers.hpp" />
 		<Unit filename="DominiosEntidades/dominios.cpp" />
 		<Unit filename="DominiosEntidades/dominios.hpp" />
 		<Unit filename="DominiosEntidades/entidades.cpp" />
@@ -61,6 +64,8 @@
 		<Unit filename="SubSistRide/MRidServ.hpp" />
 		<Unit filename="SubSistUser/MUserApres.cpp" />
 		<Unit filename="SubSistUser/MUserApres.hpp" />
+		<Unit filename="SubSistUser/MUserServ.cpp" />
+		<Unit filename="SubSistUser/MUserServ.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
