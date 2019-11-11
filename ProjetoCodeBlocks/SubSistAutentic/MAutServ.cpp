@@ -9,7 +9,18 @@ bool CntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error)
     ContainerUsuarios * userRepo;
     userRepo = ContainerUsuarios::instanciar();
 
-    bool autenticado = userRepo->compararEmailSenha (*email, senha);
+    Usuario * userAutenticado;
+    userAutenticado = new Usuario();
 
-    return autenticado;
+    bool userEncontrado = userRepo->obterUsuario(*email, userAutenticado);
+
+    if (userEncontrado)
+    {
+        if (userAutenticado->getSenha().getValor() == senha.getValor())
+        {
+            return true;
+        }
+    }
+    
+    return false;
 }

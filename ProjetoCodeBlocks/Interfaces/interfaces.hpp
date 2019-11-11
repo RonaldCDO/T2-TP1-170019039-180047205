@@ -70,7 +70,7 @@ class IRidApres
 class IRidServ
 {
     public:
-        virtual bool cadastrarCarona (Carona * carona) throw(runtime_error) = 0;
+        virtual bool cadastrarCarona (Carona * carona, Email * email) throw(runtime_error) = 0;
         virtual bool descadastrarCarona (CodigoDeCarona codigo) throw(runtime_error) = 0;
         virtual bool efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, Conta * prestador) throw(runtime_error) = 0; 
 

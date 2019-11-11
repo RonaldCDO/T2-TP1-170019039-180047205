@@ -13,6 +13,7 @@
 #include "MRidApres.hpp"
 #include "MUserServ.hpp"
 #include "MAutServ.hpp"
+#include "MRidServ.hpp"
 
 #include "containers.hpp"
 #include "stubs.hpp"
@@ -47,12 +48,19 @@ int main()
 
     userRepo->inserir(user);
 
-    Usuario user2;
+    Usuario * user2;
+    user2 = new Usuario();
 
-    user2 = userRepo->obterUsuario (user.getEmail());
+    bool found;
 
-    cout << user2.getCPF().getValor() << endl;
+    found = userRepo->obterUsuario (user.getEmail(), user2);
+
+    if (found)
+    {    
+        cout << user2->getCPF().getValor() << endl;
+    }
 */
+
 
     //////// Teste da Controladora de Apresentação de Usuário ////////
 
@@ -62,11 +70,16 @@ int main()
     IUserServ * cntrUserServ;
     cntrUserServ = new CntrUserServ();
 
+    IRidServ * cntrRidServ;
+    cntrRidServ = new CntrRidServ();
+
     CntrAutApres controladoraA;
     CntrUserApres controladoraU;
+    CntrRidApres controladoraR;
 
     controladoraA.setCntrAutServ(cntrAutServ);
     controladoraU.setCntrUserServ(cntrUserServ);
+    controladoraR.setCntrRidServ(cntrRidServ);
 
     Email * email;
     email = new Email();
@@ -88,11 +101,14 @@ int main()
         }
         else
         {
-            char result[] = "Nao foi possivel aitenticar";
+            char result[] = "Nao foi possivel autenticar. Usuario nao cadastrado ou dados invalidos.";
             mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
         }
         
+        getch();
+        clear();
 
+        controladoraR.cadastrarCarona(email);
         
     }
     catch (const runtime_error& exp)

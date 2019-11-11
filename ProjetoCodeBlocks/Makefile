@@ -7,14 +7,17 @@ STUB = -I ./Stubs/
 REPO = -I ./Containers/
 LDLIBS = -lncurses
 
-executable: main.o dominios.o entidades.o stubs.o MAutApres.o MUserApres.o MRidApres.o MUserServ.o MAutServ.o containers.o
-	g++ main.o entidades.o dominios.o stubs.o MAutApres.o MUserApres.o MRidApres.o containers.o MUserServ.o MAutServ.o -o executable -lncurses
+executable: main.o dominios.o entidades.o stubs.o MAutApres.o MUserApres.o MRidApres.o MUserServ.o MAutServ.o MRidServ.o containers.o
+	g++ main.o entidades.o dominios.o stubs.o MAutApres.o MUserApres.o MRidApres.o containers.o MUserServ.o MAutServ.o MRidServ.o -o executable -lncurses
 
-main.o: main.cpp DominiosEntidades/dominios.hpp DominiosEntidades/entidades.hpp SubSistAutentic/MAutApres.hpp SubSistUser/MUserApres.hpp SubSistRide/MRidApres.hpp Stubs/stubs.hpp SubSistUser/MUserServ.hpp SubSistAutentic/MAutServ.hpp Containers/containers.hpp
+main.o: main.cpp DominiosEntidades/dominios.hpp DominiosEntidades/entidades.hpp SubSistAutentic/MAutApres.hpp SubSistUser/MUserApres.hpp SubSistRide/MRidApres.hpp Stubs/stubs.hpp SubSistUser/MUserServ.hpp SubSistAutentic/MAutServ.hpp SubSistRide/MRidServ.hpp Containers/containers.hpp
 	g++ $(DE) $(SA) $(SU) $(STUB) $(SR) $(INT) $(REPO) -c main.cpp
 
 stubs.o: Stubs/stubs.cpp Stubs/stubs.hpp Interfaces/interfaces.hpp
 	g++ $(INT) $(STUB) $(DE) -c Stubs/stubs.cpp
+
+MRidServ.o: SubSistRide/MRidServ.cpp SubSistRide/MRidServ.hpp Containers/containers.hpp
+	g++ $(INT) $(REPO) $(DE) -c SubSistRide/MRidServ.cpp
 
 MUserServ.o: SubSistUser/MUserServ.cpp SubSistUser/MUserServ.hpp Containers/containers.hpp
 	g++ $(INT) $(REPO) $(DE) -c SubSistUser/MUserServ.cpp

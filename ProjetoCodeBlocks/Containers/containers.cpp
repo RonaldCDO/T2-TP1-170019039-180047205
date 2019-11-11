@@ -24,24 +24,13 @@ void ContainerUsuarios::inserir (Usuario usuario)
 }
 
 
-Usuario ContainerUsuarios::obterUsuario (Email email)
+bool ContainerUsuarios::obterUsuario (Email email, Usuario * usuario)
 {
     for (vector<Usuario>::iterator user = repositorioUsuarios.begin(); user != repositorioUsuarios.end(); user++)
     {
         if (user->getEmail().getValor() == email.getValor())
         {
-            return *user;
-        }
-    }
-}
-
-
-bool ContainerUsuarios::compararEmailSenha (Email email, Senha senha)
-{
-    for (vector<Usuario>::iterator user = repositorioUsuarios.begin(); user != repositorioUsuarios.end(); user++)
-    {
-        if ((user->getEmail().getValor() == email.getValor()) && (user->getSenha().getValor() == senha.getValor()))
-        {
+            *usuario = *user;
             return true;
         }
     }
@@ -91,6 +80,22 @@ ContainerCaronas * ContainerCaronas::instanciar()
 void ContainerCaronas::inserir (Carona carona)
 {
     repositorioCaronas.push_back(carona);
+}
+
+
+bool ContainerCaronas::verificarConflitoDeData (Usuario * usuario, Carona * carona)
+{
+    for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
+    {
+        if (ride->getProvedorDaCarona()->getEmail().getValor() == usuario->getEmail().getValor())
+        {
+            if ((ride->getDuracao().getValor() == carona->getDuracao().getValor()) && (ride->getData().getValor() == carona->getData().getValor()))
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 /*

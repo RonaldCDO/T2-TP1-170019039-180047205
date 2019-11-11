@@ -26,8 +26,7 @@ class ContainerUsuarios
         static ContainerUsuarios * instanciar();
 
         void inserir(Usuario usuario);
-        Usuario obterUsuario (Email email);
-        bool compararEmailSenha (Email email, Senha senha);
+        bool obterUsuario (Email email, Usuario * user);
 };
 
 
@@ -64,5 +63,5 @@ class ContainerCaronas
         static ContainerCaronas * instanciar();
 
         void inserir(Carona carona);
-        //bool verifConflitoData(Carona carona);
+        bool verificarConflitoDeData (Usuario * usuario, Carona * carona);
 };

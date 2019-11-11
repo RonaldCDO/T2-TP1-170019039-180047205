@@ -360,6 +360,61 @@ bool TelaDadosCarona::run(Carona * carona)
 
     qtdTentativas = 0;
 
+    // Obtenção da Duracao
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {
+        try
+        {
+            char dominio[] = "Duracao da viagem em horas: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[50];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo(); 
+            
+            duracao.setValor(valor);
+
+            carona->setDuracao(duracao);
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
     // Obtenção da quantidade de Vagas
     while(qtdTentativas++ < MAX_TENTATIVAS)
     {
@@ -670,7 +725,7 @@ void CntrRidApres::cadastrarCarona(Email * email) throw(runtime_error)
     // Após validar os valores.
     bool cadastrado;
 
-    cadastrado = cntrRidServ->cadastrarCarona(carona);
+    cadastrado = cntrRidServ->cadastrarCarona(carona, email);
 
     int linha, coluna;
     initscr();
