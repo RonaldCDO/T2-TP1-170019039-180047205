@@ -49,9 +49,6 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
 
     *caronaSolicitada = rideRepo->buscarCarona(rideCode);
 
-    cout << "Teste 1" << endl;
-    cout << caronaSolicitada->getCodigoDeCarona().getValor() << endl;
-
         //Verificação a respeito das vagas e alteração do valor
     if (caronaSolicitada->getVagas().getValor() == "0")
     {
@@ -73,8 +70,6 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
         cout << exp.what() << endl;
     }
 
-    cout << "Vagas: " << vagas.getValor() << endl;
-
     caronaSolicitada->setVagas(vagas);
 
         //Obtenção do usuário que solicita a reserva
@@ -85,8 +80,6 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
     cliente = new Usuario();
 
     userRepo->obterUsuario(*email, cliente);
-
-    cout << "Teste 3: " << cliente->getCPF().getValor() << endl;
 
         //Obtenção das contas do responsável pela carona.
     ContainerContas * contaRepo;
@@ -111,6 +104,9 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
     reserva.setCodigoDeReserva(*reservaCode);
     reserva.setAssento(*seat);
     reserva.setBagagem(*bag);
+    reserva.setCliente(cliente);
+    reserva.setCaronaAssociada(caronaSolicitada);
+
 
     reservaRepo->inserir(reserva);
 
