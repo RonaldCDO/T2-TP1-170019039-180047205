@@ -709,6 +709,359 @@ bool TelaDadosReserva::run(CodigoDeCarona * rideCode, Assento * seat, Bagagem * 
 }
 
 
+bool TelaPesquisaCarona::solicitarDados(Cidade * cityOrigem, Estado * stateOrigem, Cidade * cityDestino, Estado * stateDestino, Data * partida)
+{
+    int qtdTentativas = 0;
+
+    char pesquisaCaronaInfo[] = "Dados para pesquisar caronas disponiveis.";
+    char novaEntrada[] = "Aperte ENTER e preencha o dado novamente.";
+    char tentativaExcedida[] = "Quantidade maxima de tentativas excedida.";
+    int linha,coluna;
+
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(pesquisaCaronaInfo))/2,"%s",pesquisaCaronaInfo);
+    getch();                                                                        
+    clear();
+
+    // Obtenção da cidade de origem
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Digite a cidade de origem: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            cityOrigem->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
+    // Obtenção do estado de origem
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Digite o Estado de origem: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            stateOrigem->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
+    // Obtenção da cidade de destino
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Digite a cidade de destino: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            cityDestino->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
+    // Obtenção do estado de destino
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Digite o Estado de destino: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            stateDestino->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    qtdTentativas = 0;
+
+    // Obtenção da data
+    while(qtdTentativas++ < MAX_TENTATIVAS)
+    {    
+        try
+        {
+            char dominio[] = "Digite a data da partida desejada: ";
+            mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
+
+            char valor[10];
+            getstr(valor);
+
+            clear();
+            noecho();
+            echo();
+
+            partida->setValor(valor);
+            
+            break;
+        }
+
+        catch(const invalid_argument& exp)
+        {
+            //Bloco para transformar uma 'string' em uma array de chars
+            string erro = exp.what();
+            char expArg[erro.length() + 1];
+            strcpy(expArg, erro.c_str());
+                                                                     
+            getmaxyx(stdscr,linha,coluna);                                                 
+            mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+            if (qtdTentativas != MAX_TENTATIVAS)
+            {
+                mvprintw(linha/2 + 2,(coluna-strlen(novaEntrada))/2,"%s",novaEntrada);
+                noecho();                                                                       
+                getch();                                                                        
+                echo();  
+                clear();
+            }
+        }
+    }
+
+    if (qtdTentativas > MAX_TENTATIVAS)
+    {
+        mvprintw(linha/2 + 2,(coluna-strlen(tentativaExcedida))/2,"%s",tentativaExcedida);
+        noecho();                                                                       
+        getch();                                                                        
+        echo();  
+        clear();
+        endwin();
+        return false;
+    }
+
+    return true;
+}
+
+
+void TelaPesquisaCarona::exibirCaronasObtidas(vector<Carona> CaronasObtidas)
+{
+    char semCaronas[] = "Nao foi obtida nenhuma carona com essas especificacoes...";
+
+    int linha,coluna;   
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+
+    if (CaronasObtidas.size() == 0)
+    {
+        mvprintw(linha/2,(coluna-strlen(semCaronas))/2,"%s",semCaronas);
+        getch();                                                                        
+        clear();
+        endwin();
+
+        return;
+    }
+
+    for (vector<Carona>::iterator ride = CaronasObtidas.begin(); ride != CaronasObtidas.end(); ride++)
+    {
+        string codigoDeCarona_str = "Codigo de Carona: " + ride->getCodigoDeCarona().getValor() + ".";
+        string nomeMotorista_str = "Nome do motorista: " + ride->getProvedorDaCarona()->getNome().getValor() + ".";
+        string telefoneMotorista_str = "Telefone do motorista: " + ride->getProvedorDaCarona()->getTelefone().getValor() + ".";
+        string emailMotorista_str = "E-mail do motorista: " + ride->getProvedorDaCarona()->getEmail().getValor() + ".";
+        string data_str = "Data de partida: " + ride->getData().getValor() + ".";
+        string duracao_str = "Duracao do trajeto: " + ride->getDuracao().getValor() + ".";
+        string vagas_str = "Vagas disponíveis: " + ride->getVagas().getValor() + ".";
+        string preco_str = "Preco: R$" + ride->getPreco().getValor() + ".";
+
+        char codigoDeCarona[codigoDeCarona_str.length() + 1];
+        char nomeMotorista[nomeMotorista_str.length() + 1];
+        char telefoneMotorista[telefoneMotorista_str.length() + 1];
+        char emailMotorista[emailMotorista_str.length() + 1];
+        char data[data_str.length() + 1];
+        char duracao[duracao_str.length() + 1];
+        char vagas[vagas_str.length() + 1];
+        char preco[preco_str.length() + 1];
+
+        strcpy(codigoDeCarona, codigoDeCarona_str.c_str());
+        strcpy(nomeMotorista, nomeMotorista_str.c_str());
+        strcpy(telefoneMotorista, telefoneMotorista_str.c_str());
+        strcpy(emailMotorista, emailMotorista_str.c_str());
+        strcpy(data, data_str.c_str());
+        strcpy(duracao, duracao_str.c_str());
+        strcpy(vagas, vagas_str.c_str());
+        strcpy(preco, preco_str.c_str());
+
+        mvprintw(linha/2,(coluna-strlen(codigoDeCarona))/2,"%s",codigoDeCarona);
+        mvprintw(linha/2 + 2,(coluna-strlen(nomeMotorista))/2,"%s",nomeMotorista);
+        mvprintw(linha/2 + 4,(coluna-strlen(telefoneMotorista))/2,"%s",telefoneMotorista);
+        mvprintw(linha/2 + 6,(coluna-strlen(emailMotorista))/2,"%s",emailMotorista);
+        mvprintw(linha/2 + 8,(coluna-strlen(data))/2,"%s",data);
+        mvprintw(linha/2 + 10,(coluna-strlen(duracao))/2,"%s",duracao);
+        mvprintw(linha/2 + 12,(coluna-strlen(vagas))/2,"%s",vagas);
+        mvprintw(linha/2 + 14,(coluna-strlen(preco))/2,"%s",preco);
+
+        getch();                                                                        
+        clear();
+    }
+
+    endwin();
+
+    return;
+}
+
+
 void CntrRidApres::cadastrarCarona(Email * email) throw(runtime_error)
 {
     // Obtenção dos dados de Carona.
@@ -746,6 +1099,49 @@ void CntrRidApres::cadastrarCarona(Email * email) throw(runtime_error)
     getch();
     clear();
     endwin();
+
+    return;
+}
+
+
+void CntrRidApres::obterDadosCarona()
+{
+    Cidade * cidadeOrigem;
+    cidadeOrigem = new Cidade();
+
+    Cidade * cidadeDestino;
+    cidadeDestino = new Cidade();
+
+    Estado * estadoOrigem;
+    estadoOrigem = new Estado();
+
+    Estado * estadoDestino;
+    estadoDestino = new Estado();
+
+    Data * data;
+    data = new Data();
+
+    TelaPesquisaCarona telaPesquisa;
+
+    if (!telaPesquisa.solicitarDados(cidadeOrigem, estadoOrigem, cidadeDestino, estadoDestino, data))
+    {
+        return;
+    }
+
+    Carona * repositorioDominios;
+    repositorioDominios = new Carona();
+
+    repositorioDominios->setCidadeDeOrigem(*cidadeOrigem);
+    repositorioDominios->setEstadoDeOrigem(*estadoOrigem);
+    repositorioDominios->setCidadeDeDestino(*cidadeDestino);
+    repositorioDominios->setEstadoDeDestino(*estadoDestino);
+    repositorioDominios->setData(*data);
+
+    vector<Carona> caronasObtidas;
+
+    caronasObtidas = cntrRidServ->pesquisarCaronas(repositorioDominios);
+
+    telaPesquisa.exibirCaronasObtidas(caronasObtidas);
 
     return;
 }

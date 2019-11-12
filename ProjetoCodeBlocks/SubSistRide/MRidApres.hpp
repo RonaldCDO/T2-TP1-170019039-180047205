@@ -20,6 +20,8 @@ class CntrRidApres : public IRidApres
         void descadastrarCarona() throw(runtime_error);
 
         void reservarCarona(Email * email) throw(runtime_error);
+
+        void obterDadosCarona();
 };
 
 
@@ -42,4 +44,15 @@ class TelaDadosReserva
 
     public:
         bool run(CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag);
+};
+
+
+class TelaPesquisaCarona
+{
+    private:
+        const static int MAX_TENTATIVAS = 3;
+
+    public:
+        bool solicitarDados(Cidade * cityOrigem, Estado * stateOrigem, Cidade * cityDestino, Estado * stateDestino, Data * partida);
+        void exibirCaronasObtidas(vector<Carona> CaronasObtidas); 
 };

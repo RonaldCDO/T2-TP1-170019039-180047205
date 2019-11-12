@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <string>
-//#include <list>
 #include <vector>
 
 #include "dominios.hpp"
@@ -65,6 +64,7 @@ class ContainerCaronas
         void inserir(Carona carona);
         bool verificarConflitoDeData (Usuario * usuario, Carona * carona);
         Carona buscarCarona (CodigoDeCarona * rideCode);
+        vector<Carona> pesquisarCaronas (Carona * fonte);
 };
 
 

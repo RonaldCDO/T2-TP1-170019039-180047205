@@ -140,6 +140,56 @@ Carona ContainerCaronas::buscarCarona (CodigoDeCarona * rideCode)
 } 
 
 
+vector<Carona> ContainerCaronas::pesquisarCaronas (Carona * fonte)
+{
+    vector<Carona> caronasCompativeis;
+
+    bool cidadeOrigemIguais;
+    bool estadoOrigemIguais;
+    bool cidadeDestinoIguais;
+    bool estadoDestinoIguais;
+    bool datasIguais;
+
+    for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
+    {
+        cidadeOrigemIguais = false;
+        estadoOrigemIguais = false;
+        cidadeDestinoIguais = false;
+        estadoDestinoIguais = false;
+        datasIguais = false;
+
+        if (fonte->getCidadeDeOrigem().getValor() == ride->getCidadeDeOrigem().getValor())
+        {
+            cidadeOrigemIguais = true;
+        }
+        if (fonte->getEstadoDeOrigem().getValor() == ride->getEstadoDeOrigem().getValor())
+        {
+            estadoOrigemIguais = true;
+        }
+        if (fonte->getCidadeDeDestino().getValor() == ride->getCidadeDeDestino().getValor())
+        {
+            cidadeDestinoIguais = true;
+        }
+        if (fonte->getEstadoDeDestino().getValor() == ride->getEstadoDeDestino().getValor())
+        {
+            estadoDestinoIguais = true;
+        }
+        if (fonte->getData().getValor() == ride->getData().getValor())
+        {
+            datasIguais = true;
+        }
+
+
+        if (cidadeOrigemIguais & cidadeDestinoIguais & estadoOrigemIguais & estadoDestinoIguais & datasIguais)
+        {
+            caronasCompativeis.push_back(*ride);
+        }
+    }
+
+    return caronasCompativeis;
+}
+
+
 
 bool ContainerReservas::RepositorioCriado = false;
 ContainerReservas * ContainerReservas::refContReserva = 0;

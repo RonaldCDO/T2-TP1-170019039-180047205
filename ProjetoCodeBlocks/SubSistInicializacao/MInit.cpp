@@ -117,6 +117,10 @@ void CntrInicializacao::IniciarSistema()
             case 2:
                 cntrUserApres->cadastrar();
                 break;
+            
+            case 3:
+                cntrRidApres->obterDadosCarona();
+                break;
 
             case 9:
                 encerrarSistema = true;

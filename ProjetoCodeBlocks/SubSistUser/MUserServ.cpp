@@ -8,12 +8,14 @@ bool CntrUserServ::cadastrarUsuario (Usuario * usuario) throw(runtime_error)
 {
     ContainerUsuarios * userRepo;
     userRepo = ContainerUsuarios::instanciar();
-/*
-    if (userRepo->obterUsuario(usuario->getEmail())->getEmail().getValor() == usuario->getEmail().getValor())
+
+    Usuario * userTemporario;
+
+    if (userRepo->obterUsuario(usuario->getEmail(), userTemporario))
     {
         return false;
     }
-*/
+
     userRepo->inserir(*usuario);
 
     return true;
@@ -28,21 +30,6 @@ void CntrUserServ::cadastrarConta (Conta * conta) throw(runtime_error)
     contaRepo->inserir(*conta);
 
     return;
-}
-
-bool CntrUserServ::verificarUsuario(Email email, Usuario * usuario) throw(runtime_error)
-{
-    ContainerUsuarios * userRepo;
-    userRepo = ContainerUsuarios::instanciar();
-
-    if(userRepo->obterUsuario(email, usuario))
-       {
-           return true;
-       }
-    else
-        {
-            return false;
-        }
 }
 
 /*void CntrUserServ::listarReservas(Email email, Carona * carona, CodigoDeCarona * codigoDeCarona,

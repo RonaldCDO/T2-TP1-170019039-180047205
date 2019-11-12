@@ -112,3 +112,16 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
 
     return true;
 }
+
+
+vector<Carona> CntrRidServ::pesquisarCaronas(Carona * dominiosSolicitados)
+{
+    ContainerCaronas * rideRepo;
+    rideRepo = ContainerCaronas::instanciar();
+
+    vector<Carona> caronasCompativeis;
+
+    caronasCompativeis = rideRepo->pesquisarCaronas(dominiosSolicitados);
+
+    return caronasCompativeis;
+}
