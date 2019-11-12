@@ -17,7 +17,7 @@ class ContainerUsuarios
         static bool RepositorioCriado;
 
         ContainerUsuarios(){}
-        
+
         vector<Usuario> repositorioUsuarios;
 
 
@@ -37,7 +37,7 @@ class ContainerContas
         static bool RepositorioCriado;
 
         ContainerContas(){}
-        
+
         vector<Conta> repositorioContas;
 
     public:
@@ -55,7 +55,7 @@ class ContainerCaronas
         static bool RepositorioCriado;
 
         ContainerCaronas(){}
-        
+
         vector<Carona> repositorioCaronas;
 
     public:
@@ -75,7 +75,7 @@ class ContainerReservas
         static bool RepositorioCriado;
 
         ContainerReservas(){}
-        
+
         vector<Reserva> repositorioReservas;
 
     public:
@@ -84,4 +84,5 @@ class ContainerReservas
         static ContainerReservas * instanciar();
 
         void inserir(Reserva reserva);
+        Reserva obterReservas(CodigoDeReserva * reserveCode);
 };

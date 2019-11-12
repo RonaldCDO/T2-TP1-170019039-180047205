@@ -19,7 +19,7 @@ bool CntrRidServ::cadastrarCarona (Carona * carona, Email * email) throw(runtime
 
     carona->setProvedorDaCarona(cadastrador);
 
-    bool caronaCadastrada; 
+    bool caronaCadastrada;
 
     caronaCadastrada = caronaRepo->verificarConflitoDeData(cadastrador, carona);
 
@@ -53,7 +53,7 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
     if (caronaSolicitada->getVagas().getValor() == "0")
     {
         return false;
-    }    
+    }
 
     int qtdVagas = (int)(caronaSolicitada->getVagas().getValor()[0] - '0');
     qtdVagas -= 1;
@@ -84,7 +84,7 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
         //Obtenção das contas do responsável pela carona.
     ContainerContas * contaRepo;
     contaRepo = ContainerContas::instanciar();
-    
+
     bool DuasContas = contaRepo->obterConta(*(caronaSolicitada->getProvedorDaCarona()), conta1, conta2);
     if (!DuasContas)
     {
@@ -94,7 +94,7 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
         //Criação e alocação da reserva;
     ContainerReservas * reservaRepo;
     reservaRepo = ContainerReservas::instanciar();
-    
+
     int reservaValor = reservaRepo->ultimaReservaCriada++;
     string reservaValor_str = to_string(reservaValor);
     reservaCode->setValor(reservaValor_str);
@@ -114,6 +114,7 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
 }
 
 
+
 vector<Carona> CntrRidServ::pesquisarCaronas(Carona * dominiosSolicitados)
 {
     ContainerCaronas * rideRepo;
@@ -124,4 +125,21 @@ vector<Carona> CntrRidServ::pesquisarCaronas(Carona * dominiosSolicitados)
     caronasCompativeis = rideRepo->pesquisarCaronas(dominiosSolicitados);
 
     return caronasCompativeis;
+}
+
+void CntrRidServ::listarReservas(Email email, Carona * carona, CodigoDeCarona * codigoDeCarona,
+                                  Usuario * usuario, Reserva * reserva) throw(runtime_error)
+{
+    ContainerUsuarios * userRepo;
+    userRepo = ContainerUsuarios::instanciar();
+
+    ContainerReservas * reserveRepo;
+    reserveRepo = ContainerReservas::instanciar();
+
+    /*if (CntrUserServ::verificarUsuario(email, usuario) == true &&
+       (carona->getCodigoDeCarona().getValor() == rideRepo->buscarCarona(codigoDeCarona)))
+    {
+        reserveRepo->obterReservas(reserva->getCodigoDeReserva().getValor());
+    }
+    */
 }
