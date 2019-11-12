@@ -137,7 +137,7 @@ Carona ContainerCaronas::buscarCarona (CodigoDeCarona * rideCode)
             return *ride;
         }
     }
-} 
+}
 
 
 
@@ -161,4 +161,17 @@ ContainerReservas * ContainerReservas::instanciar()
 void ContainerReservas::inserir(Reserva reserva)
 {
     repositorioReservas.push_back(reserva);
+}
+
+
+Reserva ContainerReservas::obterReservas(CodigoDeReserva * reserveCode)
+{
+    for (vector<Reserva>::iterator reserve = repositorioReservas.begin(); reserve != repositorioReservas.end(); reserve++)
+    {
+        if (reserve->getCodigoDeReserva().getValor() == reserveCode->getValor())
+        {
+
+            return *reserve;
+        }
+    }
 }

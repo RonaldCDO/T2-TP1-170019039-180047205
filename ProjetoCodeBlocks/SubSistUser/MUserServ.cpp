@@ -45,7 +45,7 @@ bool CntrUserServ::verificarUsuario(Email email, Usuario * usuario) throw(runtim
         }
 }
 
-/*void CntrUserServ::listarReservas(Email email, Carona * carona, CodigoDeCarona * codigoDeCarona,
+void CntrUserServ::listarReservas(Email email, Carona * carona, CodigoDeCarona * codigoDeCarona,
                                   Usuario * usuario, Reserva * reserva) throw(runtime_error)
 {
     ContainerCaronas * rideRepo;
@@ -57,9 +57,10 @@ bool CntrUserServ::verificarUsuario(Email email, Usuario * usuario) throw(runtim
     ContainerReservas * reserveRepo;
     reserveRepo = ContainerReservas::instanciar();
 
-    if (CntrUserServ::verificarEmail(email, usuario) == true && (carona->getCodigoDeCarona() == rideRepo->buscarCarona(codigoDeCarona)))
+    if (CntrUserServ::verificarUsuario(email, usuario) == true &&
+       (carona->getCodigoDeCarona().getValor() == rideRepo->buscarCarona(codigoDeCarona)))
     {
-        //reserveRepo->buscarReserva();
+        reserveRepo->obterReservas(reserva->getCodigoDeReserva().getValor());
     }
 
 
