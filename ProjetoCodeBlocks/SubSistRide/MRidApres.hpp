@@ -22,6 +22,8 @@ class CntrRidApres : public IRidApres
         void reservarCarona(Email * email) throw(runtime_error);
 
         void obterDadosCarona();
+
+        void listarReservas(Email * email);
 };
 
 
@@ -44,6 +46,7 @@ class TelaDadosReserva
 
     public:
         bool run(CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag);
+        void exibirReservasAssociadas(vector<Reserva> ReservasAssociadas);
 };
 
 

@@ -1062,6 +1062,60 @@ void TelaPesquisaCarona::exibirCaronasObtidas(vector<Carona> CaronasObtidas)
 }
 
 
+void TelaDadosReserva::exibirReservasAssociadas(vector<Reserva> ReservasAssociadas)
+{
+    char semReservas[] = "A carona em questao nao possui nenhuma reserva associada.";
+
+    int linha,coluna;   
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+
+    if (ReservasAssociadas.size() == 0)
+    {
+        mvprintw(linha/2,(coluna-strlen(semReservas))/2,"%s",semReservas);
+        getch();                                                                        
+        clear();
+        endwin();
+
+        return;
+    }
+
+    for (vector<Reserva>::iterator reserva = ReservasAssociadas.begin(); reserva != ReservasAssociadas.end(); reserva++)
+    {
+        string codigoDeReserva_str = "Codigo de Reserva: " + reserva->getCodigoDeReserva().getValor() + ".";
+        string nomePassageiro_str = "Nome do passageiro: " + reserva->getCliente()->getNome().getValor() + ".";
+        string emailPassageiro_str = "E-mail do passageiro: " + reserva->getCliente()->getEmail().getValor() + ".";
+        string assento_str = "Preferencia de assento: " + reserva->getAssento().getValor() + ".";
+        string bagagem_str = "Quantidade de bagagens: " + reserva->getBagagem().getValor() + ".";
+
+        char codigoDeReserva[codigoDeReserva_str.length() + 1];
+        char nomePassageiro[nomePassageiro_str.length() + 1];
+        char emailPassageiro[emailPassageiro_str.length() + 1];
+        char assento[assento_str.length() + 1];
+        char bagagem[bagagem_str.length() + 1];
+
+        strcpy(codigoDeReserva, codigoDeReserva_str.c_str());
+        strcpy(nomePassageiro, nomePassageiro_str.c_str());
+        strcpy(emailPassageiro, emailPassageiro_str.c_str());
+        strcpy(assento, assento_str.c_str());
+        strcpy(bagagem, bagagem_str.c_str());
+
+        mvprintw(linha/2,(coluna-strlen(codigoDeReserva))/2,"%s",codigoDeReserva);
+        mvprintw(linha/2 + 2,(coluna-strlen(nomePassageiro))/2,"%s",nomePassageiro);
+        mvprintw(linha/2 + 4,(coluna-strlen(emailPassageiro))/2,"%s",emailPassageiro);
+        mvprintw(linha/2 + 6,(coluna-strlen(assento))/2,"%s",assento);
+        mvprintw(linha/2 + 8,(coluna-strlen(bagagem))/2,"%s",bagagem);
+
+        getch();                                                                        
+        clear();
+    }
+
+    endwin();
+
+    return;
+}
+
+
 void CntrRidApres::cadastrarCarona(Email * email) throw(runtime_error)
 {
     // Obtenção dos dados de Carona.
@@ -1205,38 +1259,49 @@ void CntrRidApres::reservarCarona(Email * email) throw(runtime_error)
     CodigoDeReserva * reservaCode;
     reservaCode = new CodigoDeReserva();
 
-    Conta * conta1;
-    conta1 = new Conta();
-
-    Conta * conta2 = 0;
-    conta2 = new Conta();
+    vector<Conta> *vetorDeContas = new vector<Conta>;
 
     int linha, coluna;
     initscr();
     getmaxyx(stdscr,linha,coluna);
 
-    if (cntrRidServ->efetuarReserva(rideCode, assentoPref, qtdBagagem, reservaCode, conta1, conta2, email))
+    if (cntrRidServ->efetuarReserva(rideCode, assentoPref, qtdBagagem, reservaCode, vetorDeContas, email))
     {
         string valorReservaCode = reservaCode->getValor();
-        string valorCodigoDeBanco = conta1->getCodigoDeBanco().getValor();
-        string valorNumeroDeAgencia = conta1->getNumeroDeAgencia().getValor();
-        string valorNumeroDaConta = conta1->getNumeroDeConta().getValor();
+        string valorCodigoDeBanco = vetorDeContas->at(0).getCodigoDeBanco().getValor();
+        string valorNumeroDeAgencia = vetorDeContas->at(0).getNumeroDeAgencia().getValor();
+        string valorNumeroDaConta = vetorDeContas->at(0).getNumeroDeConta().getValor();
+
+        string valorCodigoDeBanco2;
+        string valorNumeroDeAgencia2;
+        string valorNumeroDaConta2;
+
+        if(vetorDeContas->size() == 2)
+        {
+            valorCodigoDeBanco2 = vetorDeContas->at(1).getCodigoDeBanco().getValor();
+            valorNumeroDeAgencia2 = vetorDeContas->at(1).getNumeroDeAgencia().getValor();
+            valorNumeroDaConta2 = vetorDeContas->at(1).getNumeroDeConta().getValor();
+        }
 
         string result1_str = "Reserva efetuada com sucesso!";
         string result2_str = "O codigo da reserva é " + valorReservaCode + ".";
         string pay1_str = "Dados para pagamento: ";
         string pay2_str = "Codigo de Banco: " + valorCodigoDeBanco + ". Nº de Agencia: " 
                         + valorNumeroDeAgencia + ". Nº da Conta: " + valorNumeroDaConta + ".";
+        string pay3_str = "Codigo de Banco: " + valorCodigoDeBanco2 + ". Nº de Agencia: " 
+                        + valorNumeroDeAgencia2 + ". Nº da Conta: " + valorNumeroDaConta2 + ".";
 
         char result1[result1_str.length() + 1];
         char result2[result2_str.length() + 1];
         char pay1[pay1_str.length() + 1];
         char pay2[pay2_str.length() + 1];
+        char pay3[pay3_str.length() + 1];
 
         strcpy(result1, result1_str.c_str());
         strcpy(result2, result2_str.c_str());
         strcpy(pay1, pay1_str.c_str());
         strcpy(pay2, pay2_str.c_str());
+        strcpy(pay3, pay3_str.c_str());
 
         mvprintw(linha/2,(coluna-strlen(result1))/2,"%s",result1);
         mvprintw(linha/2 + 2,(coluna-strlen(result2))/2,"%s",result2);
@@ -1246,6 +1311,10 @@ void CntrRidApres::reservarCarona(Email * email) throw(runtime_error)
 
         mvprintw(linha/2,(coluna-strlen(pay1))/2,"%s",pay1);
         mvprintw(linha/2 + 2,(coluna-strlen(pay2))/2,"%s",pay2);
+        if(vetorDeContas->size() == 2)
+        {
+            mvprintw(linha/2 + 4,(coluna-strlen(pay3))/2,"%s",pay3);
+        }
 
         getch();
         clear();
@@ -1263,5 +1332,70 @@ void CntrRidApres::reservarCarona(Email * email) throw(runtime_error)
 
     endwin();
     
+    return;
+}
+
+
+void CntrRidApres::listarReservas(Email * email)
+{
+    CodigoDeCarona * rideCode;
+    rideCode = new CodigoDeCarona();
+
+    int linha, coluna;
+    char solicitacaoRideCode[] = "Digite o codigo de carona da qual se deseja listar as reservas associadas: ";
+    char rideCodeLido[5];
+
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(solicitacaoRideCode))/2,"%s",solicitacaoRideCode);
+    getstr(rideCodeLido);
+    clear();
+
+    try
+    {
+        rideCode->setValor(rideCodeLido);
+    }
+    catch(const invalid_argument& exp)
+    {
+        //Bloco para transformar uma 'string' em uma array de chars
+        string erro = exp.what();
+        char expArg[erro.length() + 1];
+        strcpy(expArg, erro.c_str());
+                                                                    
+        getmaxyx(stdscr,linha,coluna);                                                 
+        mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+        char pedidoRecusado[] = "Nao foi possivel pesquisar as reservas";
+        mvprintw(linha/2 + 2,(coluna-strlen(pedidoRecusado))/2,"%s",pedidoRecusado);
+
+        getch();
+        clear();
+        endwin();
+
+        return;
+    }
+
+    vector<Reserva> * reservasAssociadas;
+    reservasAssociadas = new vector<Reserva>;
+
+    bool donoDaCarona;
+    
+    donoDaCarona = cntrRidServ->listarReservas(email, rideCode, reservasAssociadas);
+
+    if (!donoDaCarona)
+    {
+        char notDono[] = "Apenas o fornecedor da carona pode listar as reservas associadas.";
+        mvprintw(linha/2,(coluna-strlen(notDono))/2,"%s",notDono);
+
+        getch();
+        clear();
+        endwin();
+
+        return;
+    }
+
+    TelaDadosReserva telaReservas;
+    telaReservas.exibirReservasAssociadas(*reservasAssociadas);
+
     return;
 }

@@ -32,26 +32,6 @@ void CntrUserServ::cadastrarConta (Conta * conta) throw(runtime_error)
     return;
 }
 
-/*void CntrUserServ::listarReservas(Email email, Carona * carona, CodigoDeCarona * codigoDeCarona,
-                                  Usuario * usuario, Reserva * reserva) throw(runtime_error)
-{
-    ContainerCaronas * rideRepo;
-    rideRepo = ContainerCaronas::instanciar();
-
-    ContainerUsuarios * userRepo;
-    userRepo = ContainerUsuarios::instanciar();
-
-    ContainerReservas * reserveRepo;
-    reserveRepo = ContainerReservas::instanciar();
-
-    if (CntrUserServ::verificarEmail(email, usuario) == true && (carona->getCodigoDeCarona() == rideRepo->buscarCarona(codigoDeCarona)))
-    {
-        //reserveRepo->buscarReserva();
-    }
-
-
-}
-*/
 
 bool CntrUserServ::excluir (Email email) throw(runtime_error)
 {

@@ -71,8 +71,9 @@ class TelaLogado
         const int DESCADASTRAR_CARONA = 2;
         const int RESERVAR = 3;
         const int CANCELAR_RESERVA = 4;
-        const int EXCLUIR_CONTA = 5;
-        const int LOGOUT = 6;
+        const int LIST_RESERVAS = 5;
+        const int EXCLUIR_CONTA = 6;
+        const int LOGOUT = 9;
 
     public:
         int run();

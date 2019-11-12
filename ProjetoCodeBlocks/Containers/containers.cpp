@@ -220,8 +220,31 @@ Reserva ContainerReservas::obterReservas(CodigoDeReserva * reserveCode)
     {
         if (reserve->getCodigoDeReserva().getValor() == reserveCode->getValor())
         {
-
             return *reserve;
         }
     }
 }
+
+
+vector<Reserva> ContainerReservas::listarReservasDeCarona(CodigoDeCarona * rideCode)
+{
+    vector<Reserva> reservas;
+    
+    for (vector<Reserva>::iterator reserva = repositorioReservas.begin(); reserva != repositorioReservas.end(); reserva++)
+    {
+        if(reserva->getCaronaAssociada()->getCodigoDeCarona().getValor() == rideCode->getValor())
+        {
+            reservas.push_back(*reserva);
+        }
+    }
+
+    cout << to_string(reservas.size()) << endl;
+
+    return reservas;
+}
+
+
+
+
+
+

@@ -316,7 +316,7 @@ bool TelaDadosConta::run(Conta * conta)
 
     int qtdTentativas = 0;
 
-    char contaInfo[] = "Dados de Conta Corrente.";
+    char contaInfo[] = "Informacao dos dados de Conta Corrente.";
     char novaEntrada[] = "Aperte ENTER e preencha o dado novamente.";
     char tentativaExcedida[] = "Quantidade maxima de tentativas excedida.";
     int linha,coluna;
@@ -614,28 +614,6 @@ void CntrUserApres::cadastrar() throw(runtime_error)
 
     cntrUserServ->cadastrarConta(conta1);
 
-/*
-    if (!contaCadastrada)
-    {
-        char result[] = "Conta principal ja existente no banco de dados.";
-        char result2[] = "Nao foi possivel cadastrar usuario.";
-        
-        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
-        mvprintw(linha/2 + 2,(coluna-strlen(result2))/2,"%s",result2);
-        
-        cntrUserServ->excluir(usuario->getEmail());
-
-        noecho();                                                                       
-        getch();                                                                        
-        echo(); 
-        clear();
-        endwin();
-
-        return;
-    }
-*/
-
-
     //Verificação da segunda conta corrente.
     Conta * conta2;
     conta2 = new Conta();
@@ -656,18 +634,6 @@ void CntrUserApres::cadastrar() throw(runtime_error)
     if (contaSecundariaObtida)
     {
         cntrUserServ->cadastrarConta(conta2);
-/*
-        if (!contaSecundariaCadastrada)
-        {
-            char result[] = "Conta secundaria ja existente no banco de dados.";
-            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
-
-            noecho();                                                                       
-            getch();                                                                        
-            echo(); 
-            clear();
-        }
-*/
     }
 
     if (userCadastrado) 
@@ -682,21 +648,6 @@ void CntrUserApres::cadastrar() throw(runtime_error)
     clear();
     endwin();
 
-/*
-    // Testando lista
-    ContainerUsuarios * userRepo;
-    userRepo = ContainerUsuarios::instanciar();
-
-    if (userRepo->obterUsuario(usuario->getEmail()))
-    {
-        cout << "Deu Certo!!" << endl;
-    }
-
-    else
-    {
-        cout << "chora.." << endl; 
-    }
-*/ 
 
     return;
 }

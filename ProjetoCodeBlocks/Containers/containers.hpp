@@ -85,4 +85,5 @@ class ContainerReservas
 
         void inserir(Reserva reserva);
         Reserva obterReservas(CodigoDeReserva * reserveCode);
+        vector<Reserva> listarReservasDeCarona(CodigoDeCarona * rideCode);
 };

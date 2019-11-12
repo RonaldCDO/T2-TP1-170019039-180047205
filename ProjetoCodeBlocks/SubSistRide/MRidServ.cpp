@@ -38,7 +38,7 @@ bool CntrRidServ::descadastrarCarona (CodigoDeCarona codigo) throw(runtime_error
 }
 
 
-bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, Conta * conta1, Conta * conta2, Email * email) throw(runtime_error)
+bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, vector<Conta> * vetorDeContas, Email * email) throw(runtime_error)
 {
         //Obtenção da carona solicitada
     ContainerCaronas * rideRepo;
@@ -85,10 +85,19 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
     ContainerContas * contaRepo;
     contaRepo = ContainerContas::instanciar();
 
+    Conta * conta1;
+    conta1 = new Conta();
+
+    Conta * conta2 = 0;
+    conta2 = new Conta();
+
     bool DuasContas = contaRepo->obterConta(*(caronaSolicitada->getProvedorDaCarona()), conta1, conta2);
-    if (!DuasContas)
+    
+    vetorDeContas->push_back(*conta1);
+
+    if (DuasContas)
     {
-        conta2 = 0;
+        vetorDeContas->push_back(*conta2);
     }
 
         //Criação e alocação da reserva;
@@ -127,19 +136,28 @@ vector<Carona> CntrRidServ::pesquisarCaronas(Carona * dominiosSolicitados)
     return caronasCompativeis;
 }
 
-void CntrRidServ::listarReservas(Email email, Carona * carona, CodigoDeCarona * codigoDeCarona,
-                                  Usuario * usuario, Reserva * reserva) throw(runtime_error)
+
+bool CntrRidServ::listarReservas(Email * email, CodigoDeCarona * rideCode, vector<Reserva> * vetorDeReservas)
 {
-    ContainerUsuarios * userRepo;
-    userRepo = ContainerUsuarios::instanciar();
+    ContainerCaronas * rideRepo;
+    rideRepo = ContainerCaronas::instanciar();
 
-    ContainerReservas * reserveRepo;
-    reserveRepo = ContainerReservas::instanciar();
+    Carona * caronaSolicitada;
+    caronaSolicitada = new Carona();
 
-    /*if (CntrUserServ::verificarUsuario(email, usuario) == true &&
-       (carona->getCodigoDeCarona().getValor() == rideRepo->buscarCarona(codigoDeCarona)))
+    *caronaSolicitada = rideRepo->buscarCarona(rideCode);
+
+    if (!(caronaSolicitada->getProvedorDaCarona()->getEmail().getValor() == email->getValor()))
     {
-        reserveRepo->obterReservas(reserva->getCodigoDeReserva().getValor());
+        return false;
     }
-    */
+
+    ContainerReservas * reservaRepo;
+    reservaRepo = ContainerReservas::instanciar();
+
+    *vetorDeReservas = reservaRepo->listarReservasDeCarona(rideCode);
+
+    cout << to_string(vetorDeReservas->size()) << endl;
+
+    return true;
 }
