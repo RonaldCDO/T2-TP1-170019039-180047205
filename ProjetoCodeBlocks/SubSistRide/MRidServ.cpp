@@ -32,9 +32,40 @@ bool CntrRidServ::cadastrarCarona (Carona * carona, Email * email) throw(runtime
 }
 
 
-bool CntrRidServ::descadastrarCarona (CodigoDeCarona codigo) throw(runtime_error)
+int CntrRidServ::descadastrarCarona (Email * email, CodigoDeCarona * codigo) throw(runtime_error)
 {
-    return true;
+    const int CARONA_DESCADASTRADA = 0;
+    const int NAO_CADASTRADOR = 1;
+    const int POSSUI_RESERVAS = 2;
+
+
+    ContainerCaronas * rideRepo;
+    rideRepo = ContainerCaronas::instanciar();
+
+    Carona * carona = new Carona();
+
+    carona = rideRepo->buscarCarona(codigo);
+
+    if (carona->getProvedorDaCarona()->getEmail().getValor() != email->getValor())
+    {
+        return NAO_CADASTRADOR;
+    }
+
+    ContainerReservas * reservaRepo;
+    reservaRepo = ContainerReservas::instanciar();
+
+    vector<Reserva> reservasAssociadas;
+
+    reservasAssociadas = reservaRepo->listarReservasDeCarona(codigo);
+
+    if (reservasAssociadas.size() != 0)
+    {
+        return POSSUI_RESERVAS;
+    }
+
+    rideRepo->excluir(*codigo);
+
+    return CARONA_DESCADASTRADA;
 }
 
 
@@ -47,7 +78,7 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
     Carona * caronaSolicitada;
     caronaSolicitada = new Carona();
 
-    *caronaSolicitada = rideRepo->buscarCarona(rideCode);
+    caronaSolicitada = rideRepo->buscarCarona(rideCode);
 
         //Verificação a respeito das vagas e alteração do valor
     if (caronaSolicitada->getVagas().getValor() == "0")
@@ -145,7 +176,7 @@ bool CntrRidServ::listarReservas(Email * email, CodigoDeCarona * rideCode, vecto
     Carona * caronaSolicitada;
     caronaSolicitada = new Carona();
 
-    *caronaSolicitada = rideRepo->buscarCarona(rideCode);
+    caronaSolicitada = rideRepo->buscarCarona(rideCode);
 
     if (!(caronaSolicitada->getProvedorDaCarona()->getEmail().getValor() == email->getValor()))
     {
@@ -160,4 +191,33 @@ bool CntrRidServ::listarReservas(Email * email, CodigoDeCarona * rideCode, vecto
     cout << to_string(vetorDeReservas->size()) << endl;
 
     return true;
+}
+
+
+bool CntrRidServ::cancelarReserva(CodigoDeReserva * reservaCode)
+{
+    ContainerReservas * reservaRepo;
+    reservaRepo = ContainerReservas::instanciar();
+
+    CodigoDeCarona * rideCode;
+    rideCode = new CodigoDeCarona();
+
+    bool reservaCancelada = reservaRepo->excluirReserva(reservaCode, rideCode);
+
+    if (reservaCancelada)
+    {
+        ContainerCaronas * rideRepo;
+        rideRepo = ContainerCaronas::instanciar();
+
+        Carona * carona = new Carona();
+
+        carona = rideRepo->buscarCarona(rideCode);
+
+        int qtdVagas = (int)(carona->getVagas().getValor()[0] - '0');
+        qtdVagas += 1;
+        string vagas_str = to_string(qtdVagas);
+        carona->getVagas().setValor(vagas_str);
+    }
+
+    return reservaCancelada;
 }

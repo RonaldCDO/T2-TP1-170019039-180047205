@@ -1201,8 +1201,12 @@ void CntrRidApres::obterDadosCarona()
 }
 
 
-void CntrRidApres::descadastrarCarona() throw(runtime_error)
+void CntrRidApres::descadastrarCarona(Email * email) throw(runtime_error)
 {
+    const int CARONA_DESCADASTRADA = 0;
+    const int NAO_CADASTRADOR = 1;
+    const int POSSUI_RESERVAS = 2;
+
     char dominio[] = "Digite o codigo de carona da qual se deseja excluir: ";
 
     int linha, coluna;
@@ -1215,21 +1219,50 @@ void CntrRidApres::descadastrarCarona() throw(runtime_error)
 
     clear();
 
-    CodigoDeCarona rideCode;
-    rideCode.setValor(valor);
+    CodigoDeCarona * rideCode = new CodigoDeCarona();
+    rideCode->setValor(valor);
 
-    if (cntrRidServ->descadastrarCarona(rideCode))
+    int resultado = cntrRidServ->descadastrarCarona(email, rideCode);
+
+
+    if (resultado == 0)
     {
         char result[] = "Carona descadastrada com sucesso.";
         mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
     }
-
-    else
+    if (resultado == 1)
+    {
+        char result[] = "Apenas o fornecedor da carona pode descadastra-la.";
+        mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+    }
+    if (resultado == 2)
     {
         char result[] = "Carona possui reservas associadas. Portando, nao pode ser descadastrada.";
         mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
     }
 
+/*
+    switch(resultado)
+    {
+        case 1:
+            char result[] = "Apenas o fornecedor da carona pode descadastra-la.";
+            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+            break;
+
+        case 2:
+            char result[] = "Carona possui reservas associadas. Portando, nao pode ser descadastrada.";
+            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+            break;
+
+        case 0:
+            char result[] = "Carona descadastrada com sucesso.";
+            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
+            break;
+
+        default:
+            break;
+    }
+*/
     getch();
     clear();
     endwin();
@@ -1365,7 +1398,7 @@ void CntrRidApres::listarReservas(Email * email)
         getmaxyx(stdscr,linha,coluna);                                                 
         mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
 
-        char pedidoRecusado[] = "Nao foi possivel pesquisar as reservas";
+        char pedidoRecusado[] = "Nao foi possivel pesquisar as reservas.";
         mvprintw(linha/2 + 2,(coluna-strlen(pedidoRecusado))/2,"%s",pedidoRecusado);
 
         getch();
@@ -1397,5 +1430,66 @@ void CntrRidApres::listarReservas(Email * email)
     TelaDadosReserva telaReservas;
     telaReservas.exibirReservasAssociadas(*reservasAssociadas);
 
+    return;
+}
+
+
+void CntrRidApres::cancelarReserva(Email * email)
+{
+    CodigoDeReserva * reservaCode;
+    reservaCode = new CodigoDeReserva();
+
+    int linha, coluna;
+    char pedidoCancelar[] = "Para cancelar a reserva, digite o codigo desta: ";
+    char reservaCodeLido[6];
+
+    initscr();
+    getmaxyx(stdscr,linha,coluna);
+    mvprintw(linha/2,(coluna-strlen(pedidoCancelar))/2,"%s",pedidoCancelar);
+    getstr(reservaCodeLido);
+    clear();
+
+    try
+    {
+        reservaCode->setValor(reservaCodeLido);
+    }
+    catch(const invalid_argument& exp)
+    {
+        //Bloco para transformar uma 'string' em uma array de chars
+        string erro = exp.what();
+        char expArg[erro.length() + 1];
+        strcpy(expArg, erro.c_str());
+                                                                    
+        getmaxyx(stdscr,linha,coluna);                                                 
+        mvprintw(linha/2,(coluna-strlen(expArg))/2,"%s",expArg);
+
+        char pedidoRecusado[] = "Nao foi possivel obter a reserva indicada.";
+        mvprintw(linha/2 + 2,(coluna-strlen(pedidoRecusado))/2,"%s",pedidoRecusado);
+
+        getch();
+        clear();
+        endwin();
+
+        return;
+    }
+
+    bool reservaCancelada = cntrRidServ->cancelarReserva(reservaCode);
+
+    if (reservaCancelada)
+    {
+        char reservaCancelada[] = "Reserva cancelada com sucesso.";
+        mvprintw(linha/2,(coluna-strlen(reservaCancelada))/2,"%s",reservaCancelada);
+    }
+
+    else
+    {
+        char falhaCancelamento[] = "A reserva solicitada nao foi encontrada no sistema.";
+        mvprintw(linha/2,(coluna-strlen(falhaCancelamento))/2,"%s",falhaCancelamento);
+    }
+
+    getch();
+    clear();
+    endwin();
+    
     return;
 }

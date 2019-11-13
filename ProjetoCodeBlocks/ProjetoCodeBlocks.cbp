@@ -23,9 +23,10 @@
 					<Add directory="SubSistUser" />
 					<Add directory="SubSistRide" />
 					<Add directory="Containers" />
+					<Add directory="SubSistInicializacao" />
 				</Compiler>
 				<Linker>
-					<Add library="../../../../../../Program Files (x86)/CodeBlocks/MinGW/lib/pdcurses.lib" />
+					<Add library="pdcurses.lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -58,6 +59,8 @@
 		<Unit filename="SubSistAutentic/MAutApres.hpp" />
 		<Unit filename="SubSistAutentic/MAutServ.cpp" />
 		<Unit filename="SubSistAutentic/MAutServ.hpp" />
+		<Unit filename="SubSistInicializacao/MInit.cpp" />
+		<Unit filename="SubSistInicializacao/MInit.hpp" />
 		<Unit filename="SubSistRide/MRidApres.cpp" />
 		<Unit filename="SubSistRide/MRidApres.hpp" />
 		<Unit filename="SubSistRide/MRidServ.cpp" />

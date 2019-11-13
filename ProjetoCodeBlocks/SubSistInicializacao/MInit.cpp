@@ -145,7 +145,7 @@ void CntrInicializacao::IniciarSistema()
                     break;
                 
                 case 2:
-                    cntrRidApres->descadastrarCarona();
+                    cntrRidApres->descadastrarCarona(email);
                     break;
 
                 case 3:
@@ -153,12 +153,11 @@ void CntrInicializacao::IniciarSistema()
                     break;
 
                 case 4:
-                    // Descadastrar carona
+                    cntrRidApres->cancelarReserva(email);
                     break;
                 
                 case 5:
                     cntrRidApres->listarReservas(email);
-                    // Excluir usuário;
                     break;
 
                 case 6:

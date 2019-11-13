@@ -63,8 +63,9 @@ class ContainerCaronas
 
         void inserir(Carona carona);
         bool verificarConflitoDeData (Usuario * usuario, Carona * carona);
-        Carona buscarCarona (CodigoDeCarona * rideCode);
+        Carona * buscarCarona (CodigoDeCarona * rideCode);
         vector<Carona> pesquisarCaronas (Carona * fonte);
+        void excluir(CodigoDeCarona rideCode);
 };
 
 
@@ -86,4 +87,5 @@ class ContainerReservas
         void inserir(Reserva reserva);
         Reserva obterReservas(CodigoDeReserva * reserveCode);
         vector<Reserva> listarReservasDeCarona(CodigoDeCarona * rideCode);
+        bool excluirReserva(CodigoDeReserva * reserveCode, CodigoDeCarona * rideCode);
 };

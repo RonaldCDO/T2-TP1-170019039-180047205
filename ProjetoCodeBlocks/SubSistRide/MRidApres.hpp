@@ -17,13 +17,15 @@ class CntrRidApres : public IRidApres
 
         void cadastrarCarona(Email * email) throw(runtime_error);
 
-        void descadastrarCarona() throw(runtime_error);
+        void descadastrarCarona(Email * email) throw(runtime_error);
 
         void reservarCarona(Email * email) throw(runtime_error);
 
         void obterDadosCarona();
 
         void listarReservas(Email * email);
+
+        void cancelarReserva(Email * email);
 };
 
 

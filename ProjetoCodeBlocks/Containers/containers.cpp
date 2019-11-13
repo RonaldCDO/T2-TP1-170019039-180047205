@@ -128,13 +128,15 @@ bool ContainerCaronas::verificarConflitoDeData (Usuario * usuario, Carona * caro
 }
 
 
-Carona ContainerCaronas::buscarCarona (CodigoDeCarona * rideCode)
+Carona * ContainerCaronas::buscarCarona (CodigoDeCarona * rideCode)
 {
     for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
     {
         if (ride->getCodigoDeCarona().getValor() == rideCode->getValor())
         {
-            return *ride;
+            Carona * pointCarona = new Carona();
+            *pointCarona = *ride;
+            return pointCarona;
         }
     }
 }
@@ -190,6 +192,19 @@ vector<Carona> ContainerCaronas::pesquisarCaronas (Carona * fonte)
 }
 
 
+void ContainerCaronas::excluir(CodigoDeCarona rideCode)
+{
+    for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
+    {
+        if (ride->getCodigoDeCarona().getValor() == rideCode.getValor())
+        {
+            repositorioCaronas.erase(ride);
+            return;
+        }
+    }
+}
+
+
 
 bool ContainerReservas::RepositorioCriado = false;
 ContainerReservas * ContainerReservas::refContReserva = 0;
@@ -241,6 +256,28 @@ vector<Reserva> ContainerReservas::listarReservasDeCarona(CodigoDeCarona * rideC
     cout << to_string(reservas.size()) << endl;
 
     return reservas;
+}
+
+
+bool ContainerReservas::excluirReserva(CodigoDeReserva * reserveCode, CodigoDeCarona * rideCode)
+{
+    bool reservaEncontrada = false;
+
+    for (vector<Reserva>::iterator reserva = repositorioReservas.begin(); reserva != repositorioReservas.end(); reserva++)
+    {
+        if(reserva->getCodigoDeReserva().getValor() == reserveCode->getValor())
+        {
+            reservaEncontrada = true;
+
+            rideCode->setValor(reserva->getCaronaAssociada()->getCodigoDeCarona().getValor());
+
+            repositorioReservas.erase(reserva);
+
+            break;
+        }
+    }
+
+    return reservaEncontrada;
 }
 
 
