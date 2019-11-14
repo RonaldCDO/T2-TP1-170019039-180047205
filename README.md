@@ -1,6 +1,6 @@
 # Trabalho 2 da Disciplina Técnicas de Programação 1 
 
-## Autor:Matheus Costa de Oliveira
+## Autor: Matheus Costa de Oliveira
 ## Coautor: Ronald Cesar
 
 ### Considerações a respeito da plataforma adotada.
