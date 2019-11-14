@@ -4,7 +4,7 @@
 using namespace std;
 
 
-bool CntrAutServ::autenticar(Email * email, Senha senha) throw(runtime_error)
+bool CntrAutServ::autenticar(Email * email, Senha senha)
 {
     ContainerUsuarios * userRepo;
     userRepo = ContainerUsuarios::instanciar();

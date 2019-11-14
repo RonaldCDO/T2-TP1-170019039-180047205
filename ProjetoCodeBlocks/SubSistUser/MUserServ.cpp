@@ -4,7 +4,7 @@
 using namespace std;
 
 
-bool CntrUserServ::cadastrarUsuario (Usuario * usuario) throw(runtime_error)
+bool CntrUserServ::cadastrarUsuario (Usuario * usuario)
 {
     ContainerUsuarios * userRepo;
     userRepo = ContainerUsuarios::instanciar();
@@ -22,7 +22,7 @@ bool CntrUserServ::cadastrarUsuario (Usuario * usuario) throw(runtime_error)
 }
 
 
-void CntrUserServ::cadastrarConta (Conta * conta) throw(runtime_error)
+void CntrUserServ::cadastrarConta (Conta * conta)
 {
     ContainerContas * contaRepo;
     contaRepo = ContainerContas::instanciar();
@@ -33,7 +33,36 @@ void CntrUserServ::cadastrarConta (Conta * conta) throw(runtime_error)
 }
 
 
-bool CntrUserServ::excluir (Email email) throw(runtime_error)
+bool CntrUserServ::excluir (Email * email)
 {
+    ContainerCaronas * rideRepo;
+    rideRepo = ContainerCaronas::instanciar();
+
+    vector<Carona> caronasFornecidas;
+
+    caronasFornecidas = rideRepo->buscarCaronasDoUsuario(email);
+
+    if (caronasFornecidas.size() != 0)
+    {
+        return false;
+    }
+
+    ContainerReservas * reservasRepo;
+    reservasRepo = ContainerReservas::instanciar();
+
+    vector<Reserva> reservasRealizadas;
+
+    reservasRealizadas = reservasRepo->buscarReservasDoUsuario(email);
+
+    if (reservasRealizadas.size() != 0)
+    {
+        return false;
+    }
+
+    ContainerUsuarios * userRepo;
+    userRepo = ContainerUsuarios::instanciar();
+
+    userRepo->excluir(*email);
+
     return true;
 }

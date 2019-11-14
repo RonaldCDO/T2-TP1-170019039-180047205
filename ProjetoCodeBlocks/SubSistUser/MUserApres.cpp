@@ -557,7 +557,7 @@ bool TelaDadosConta::novaConta(Conta * conta)
 
 
 
-void CntrUserApres::cadastrar() throw(runtime_error)
+void CntrUserApres::cadastrar()
 {
     // Obtenção dos dados do usuário.
     Usuario * usuario;
@@ -654,11 +654,11 @@ void CntrUserApres::cadastrar() throw(runtime_error)
 
 
 
-void CntrUserApres::excluir(Email * email) throw(runtime_error)
+bool CntrUserApres::excluir(Email * email)
 {
     bool userExcluido;
 
-    userExcluido = cntrUserServ->excluir(*email);
+    userExcluido = cntrUserServ->excluir(email);
 
     int linha, coluna;
     initscr();
@@ -682,5 +682,5 @@ void CntrUserApres::excluir(Email * email) throw(runtime_error)
     clear();
     endwin();
 
-    return;
+    return userExcluido;
 }

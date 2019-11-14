@@ -602,7 +602,7 @@ bool TelaDadosReserva::run(CodigoDeCarona * rideCode, Assento * seat, Bagagem * 
     {    
         try
         {
-            char dominio[] = "Preferencia de assento (D out T): ";
+            char dominio[] = "Preferencia de assento (D ou T): ";
             mvprintw(linha/2,(coluna-strlen(dominio))/2,"%s",dominio);
 
             char valor[10];
@@ -1116,7 +1116,7 @@ void TelaDadosReserva::exibirReservasAssociadas(vector<Reserva> ReservasAssociad
 }
 
 
-void CntrRidApres::cadastrarCarona(Email * email) throw(runtime_error)
+void CntrRidApres::cadastrarCarona(Email * email)
 {
     // Obtenção dos dados de Carona.
     Carona * carona;
@@ -1201,7 +1201,7 @@ void CntrRidApres::obterDadosCarona()
 }
 
 
-void CntrRidApres::descadastrarCarona(Email * email) throw(runtime_error)
+void CntrRidApres::descadastrarCarona(Email * email)
 {
     const int CARONA_DESCADASTRADA = 0;
     const int NAO_CADASTRADOR = 1;
@@ -1241,28 +1241,6 @@ void CntrRidApres::descadastrarCarona(Email * email) throw(runtime_error)
         mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
     }
 
-/*
-    switch(resultado)
-    {
-        case 1:
-            char result[] = "Apenas o fornecedor da carona pode descadastra-la.";
-            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
-            break;
-
-        case 2:
-            char result[] = "Carona possui reservas associadas. Portando, nao pode ser descadastrada.";
-            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
-            break;
-
-        case 0:
-            char result[] = "Carona descadastrada com sucesso.";
-            mvprintw(linha/2,(coluna-strlen(result))/2,"%s",result);
-            break;
-
-        default:
-            break;
-    }
-*/
     getch();
     clear();
     endwin();
@@ -1271,7 +1249,7 @@ void CntrRidApres::descadastrarCarona(Email * email) throw(runtime_error)
 }
 
 
-void CntrRidApres::reservarCarona(Email * email) throw(runtime_error)
+void CntrRidApres::reservarCarona(Email * email)
 {
     CodigoDeCarona * rideCode;
     rideCode = new CodigoDeCarona();
@@ -1408,8 +1386,7 @@ void CntrRidApres::listarReservas(Email * email)
         return;
     }
 
-    vector<Reserva> * reservasAssociadas;
-    reservasAssociadas = new vector<Reserva>;
+    vector<Reserva> * reservasAssociadas = new vector<Reserva>;
 
     bool donoDaCarona;
     

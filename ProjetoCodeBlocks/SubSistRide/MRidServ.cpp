@@ -4,7 +4,7 @@
 using namespace std;
 
 
-bool CntrRidServ::cadastrarCarona (Carona * carona, Email * email) throw(runtime_error)
+bool CntrRidServ::cadastrarCarona (Carona * carona, Email * email)
 {
     ContainerCaronas * caronaRepo;
     caronaRepo = ContainerCaronas::instanciar();
@@ -32,7 +32,7 @@ bool CntrRidServ::cadastrarCarona (Carona * carona, Email * email) throw(runtime
 }
 
 
-int CntrRidServ::descadastrarCarona (Email * email, CodigoDeCarona * codigo) throw(runtime_error)
+int CntrRidServ::descadastrarCarona (Email * email, CodigoDeCarona * codigo)
 {
     const int CARONA_DESCADASTRADA = 0;
     const int NAO_CADASTRADOR = 1;
@@ -69,7 +69,7 @@ int CntrRidServ::descadastrarCarona (Email * email, CodigoDeCarona * codigo) thr
 }
 
 
-bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, vector<Conta> * vetorDeContas, Email * email) throw(runtime_error)
+bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bagagem * bag, CodigoDeReserva * reservaCode, vector<Conta> * vetorDeContas, Email * email)
 {
         //Obtenção da carona solicitada
     ContainerCaronas * rideRepo;
@@ -147,7 +147,6 @@ bool CntrRidServ::efetuarReserva (CodigoDeCarona * rideCode, Assento * seat, Bag
     reserva.setCliente(cliente);
     reserva.setCaronaAssociada(caronaSolicitada);
 
-
     reservaRepo->inserir(reserva);
 
     return true;
@@ -178,7 +177,7 @@ bool CntrRidServ::listarReservas(Email * email, CodigoDeCarona * rideCode, vecto
 
     caronaSolicitada = rideRepo->buscarCarona(rideCode);
 
-    if (!(caronaSolicitada->getProvedorDaCarona()->getEmail().getValor() == email->getValor()))
+    if (caronaSolicitada->getProvedorDaCarona()->getEmail().getValor() != email->getValor())
     {
         return false;
     }
@@ -187,8 +186,6 @@ bool CntrRidServ::listarReservas(Email * email, CodigoDeCarona * rideCode, vecto
     reservaRepo = ContainerReservas::instanciar();
 
     *vetorDeReservas = reservaRepo->listarReservasDeCarona(rideCode);
-
-    cout << to_string(vetorDeReservas->size()) << endl;
 
     return true;
 }

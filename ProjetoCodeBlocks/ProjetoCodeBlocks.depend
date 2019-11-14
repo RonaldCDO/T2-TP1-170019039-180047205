@@ -123,10 +123,10 @@
 	"MUserServ.hpp"
 	"containers.hpp"
 
-1573593950 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/Containers/containers.cpp
+1573749851 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/Containers/containers.cpp
 	"containers.hpp"
 
-1573581092 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/Containers/containers.hpp
+1573750074 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/Containers/containers.hpp
 	<iostream>
 	<string>
 	<vector>
@@ -138,7 +138,7 @@
 	<string>
 	<stdexcept>
 
-1573492887 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/DominiosEntidades/entidades.hpp
+1573749337 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/DominiosEntidades/entidades.hpp
 	"dominios.hpp"
 	<iostream>
 	<string>
@@ -159,7 +159,7 @@
 1573500833 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/Stubs/stubs.hpp
 	"interfaces.hpp"
 
-1573580172 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/Interfaces/interfaces.hpp
+1573753449 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/Interfaces/interfaces.hpp
 	<iostream>
 	<curses.h>
 	<string.h>
@@ -174,20 +174,20 @@
 	<string.h>
 	<string>
 
-1572960362 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistAutentic/MAutApres.hpp
+1573753826 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistAutentic/MAutApres.hpp
 	"interfaces.hpp"
 
 1573475222 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistAutentic/MAutServ.cpp
 	"MAutServ.hpp"
 	"containers.hpp"
 
-1573468615 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistAutentic/MAutServ.hpp
+1573753853 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistAutentic/MAutServ.hpp
 	"interfaces.hpp"
 
-1573593228 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistInicializacao/MInit.cpp
+1573735545 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistInicializacao/MInit.cpp
 	"MInit.hpp"
 
-1573592389 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistInicializacao/MInit.hpp
+1573753662 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistInicializacao/MInit.hpp
 	<iostream>
 	<string>
 	<string.h>
@@ -201,35 +201,34 @@
 	"MAutServ.hpp"
 	"MRidServ.hpp"
 	"containers.hpp"
-	"stubs.hpp"
 
-1573388347 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserApres.hpp
+1573753906 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserApres.hpp
 	"interfaces.hpp"
 
-1573591266 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidApres.hpp
+1573753645 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidApres.hpp
 	"interfaces.hpp"
 
-1573571028 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserServ.hpp
+1573753915 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserServ.hpp
 	"interfaces.hpp"
 
-1573580174 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidServ.hpp
+1573753478 /home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidServ.hpp
 	"interfaces.hpp"
 
-1573593941 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidApres.cpp
+1573753466 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidApres.cpp
 	"MRidApres.hpp"
 
-1573593951 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidServ.cpp
+1573753473 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistRide/MRidServ.cpp
 	"MRidServ.hpp"
 	"containers.hpp"
 
-1573571563 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserApres.cpp
+1573735159 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserApres.cpp
 	"MUserApres.hpp"
 
-1573571379 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserServ.cpp
+1573735141 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/SubSistUser/MUserServ.cpp
 	"MUserServ.hpp"
 	"containers.hpp"
 
-1573498777 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/main.cpp
+1573753688 source:/home/matheus/Documents/ENE/TP1/TP1-2/ProjetoCodeBlocks/main.cpp
 	<iostream>
 	<string>
 	<string.h>
@@ -244,5 +243,4 @@
 	"MRidServ.hpp"
 	"MInit.hpp"
 	"containers.hpp"
-	"stubs.hpp"
 

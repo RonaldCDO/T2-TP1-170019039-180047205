@@ -15,11 +15,11 @@ class CntrRidApres : public IRidApres
             this->cntrRidServ = cntrRidServ;
         }
 
-        void cadastrarCarona(Email * email) throw(runtime_error);
+        void cadastrarCarona(Email * email);
 
-        void descadastrarCarona(Email * email) throw(runtime_error);
+        void descadastrarCarona(Email * email);
 
-        void reservarCarona(Email * email) throw(runtime_error);
+        void reservarCarona(Email * email);
 
         void obterDadosCarona();
 

@@ -8,6 +8,6 @@ using namespace std;
 class CntrAutServ : public IAutServ
 {
     public:
-        bool autenticar(Email * email, Senha senha) throw(runtime_error);
+        bool autenticar(Email * email, Senha senha);
 };
 

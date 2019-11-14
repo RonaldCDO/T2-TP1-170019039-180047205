@@ -25,9 +25,6 @@
 					<Add directory="Containers" />
 					<Add directory="SubSistInicializacao" />
 				</Compiler>
-				<Linker>
-					<Add library="pdcurses.lib" />
-				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/ProjetoCodeBlocks" prefix_auto="1" extension_auto="1" />
@@ -53,8 +50,6 @@
 		<Unit filename="DominiosEntidades/entidades.cpp" />
 		<Unit filename="DominiosEntidades/entidades.hpp" />
 		<Unit filename="Interfaces/interfaces.hpp" />
-		<Unit filename="Stubs/stubs.cpp" />
-		<Unit filename="Stubs/stubs.hpp" />
 		<Unit filename="SubSistAutentic/MAutApres.cpp" />
 		<Unit filename="SubSistAutentic/MAutApres.hpp" />
 		<Unit filename="SubSistAutentic/MAutServ.cpp" />

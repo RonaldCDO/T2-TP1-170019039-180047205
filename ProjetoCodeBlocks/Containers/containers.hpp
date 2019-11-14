@@ -26,6 +26,7 @@ class ContainerUsuarios
 
         void inserir(Usuario usuario);
         bool obterUsuario (Email email, Usuario * user);
+        void excluir (Email email);
 };
 
 
@@ -65,7 +66,8 @@ class ContainerCaronas
         bool verificarConflitoDeData (Usuario * usuario, Carona * carona);
         Carona * buscarCarona (CodigoDeCarona * rideCode);
         vector<Carona> pesquisarCaronas (Carona * fonte);
-        void excluir(CodigoDeCarona rideCode);
+        void excluir (CodigoDeCarona rideCode);
+        vector<Carona> buscarCaronasDoUsuario (Email * email);
 };
 
 
@@ -88,4 +90,5 @@ class ContainerReservas
         Reserva obterReservas(CodigoDeReserva * reserveCode);
         vector<Reserva> listarReservasDeCarona(CodigoDeCarona * rideCode);
         bool excluirReserva(CodigoDeReserva * reserveCode, CodigoDeCarona * rideCode);
+        vector<Reserva> buscarReservasDoUsuario (Email * email);
 };

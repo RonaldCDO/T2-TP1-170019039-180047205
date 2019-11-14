@@ -17,7 +17,6 @@
 #include "MRidServ.hpp"
 
 #include "containers.hpp"
-#include "stubs.hpp"
 
 using namespace std;
 
@@ -73,6 +72,7 @@ class TelaLogado
         const int CANCELAR_RESERVA = 4;
         const int LIST_RESERVAS = 5;
         const int EXCLUIR_CONTA = 6;
+        const int LISTAR_CARONAS = 7;
         const int LOGOUT = 9;
 
     public:

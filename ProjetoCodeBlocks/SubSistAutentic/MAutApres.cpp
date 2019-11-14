@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool CntrAutApres::autenticar(Email * email) throw(runtime_error)
+bool CntrAutApres::autenticar(Email * email)
 {
     Senha senha;
 

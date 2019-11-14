@@ -54,6 +54,7 @@ int TelaLogado::run()
     string cancReserva_str = "Para cancelar uma reserva, digite " + to_string(CANCELAR_RESERVA) + ".";
     string listarReserva_str = "Para listar reservas associadas a suas caronas, digite " + to_string(LIST_RESERVAS) + ".";
     string excluir_str = "Para excluir sua conta, digite " + to_string(EXCLUIR_CONTA) + ".";
+    string caronas_str = "Para listas as caronas disponiveis, digite " + to_string(LISTAR_CARONAS) + ".";
     string logout_str = "Para sair, digite " + to_string(LOGOUT) + ".";
     string opcao_str = "Opcao selecionada: ";
 
@@ -63,6 +64,7 @@ int TelaLogado::run()
     char cancReserva[cancReserva_str.length() + 1];
     char listarReserva[listarReserva_str.length() + 1];
     char excluir[excluir_str.length() + 1];
+    char caronas[caronas_str.length() + 1];
     char logout[logout_str.length() + 1];
     char opcao[opcao_str.length() + 1];
 
@@ -72,6 +74,7 @@ int TelaLogado::run()
     strcpy(cancReserva, cancReserva_str.c_str());
     strcpy(listarReserva, listarReserva_str.c_str());
     strcpy(excluir, excluir_str.c_str());
+    strcpy(caronas, caronas_str.c_str());
     strcpy(logout, logout_str.c_str());
     strcpy(opcao, opcao_str.c_str());
 
@@ -85,8 +88,9 @@ int TelaLogado::run()
     mvprintw(linha/2 + 6,(coluna-strlen(cancReserva))/2,"%s",cancReserva);
     mvprintw(linha/2 + 8,(coluna-strlen(listarReserva))/2,"%s",listarReserva);
     mvprintw(linha/2 + 10,(coluna-strlen(excluir))/2,"%s",excluir);
-    mvprintw(linha/2 + 12,(coluna-strlen(logout))/2,"%s",logout);
-    mvprintw(linha/2 + 14,(coluna-strlen(opcao))/2,"%s",opcao);
+    mvprintw(linha/2 + 12,(coluna-strlen(caronas))/2,"%s",caronas);
+    mvprintw(linha/2 + 14,(coluna-strlen(logout))/2,"%s",logout);
+    mvprintw(linha/2 + 16,(coluna-strlen(opcao))/2,"%s",opcao);
 
     char escolha[1];
     getstr(escolha);
@@ -161,7 +165,11 @@ void CntrInicializacao::IniciarSistema()
                     break;
 
                 case 6:
-                    // Excluir usuário;
+                    usuarioAutenticado = !(cntrUserApres->excluir(email));
+                    break;
+
+                case 7:
+                    cntrRidApres->obterDadosCarona();
                     break;
 
                 case 9:

@@ -276,7 +276,7 @@ class Reserva : public Entidade
             this->cliente = cliente;
         }
 
-        void setCaronaAssociada(Carona * carona)
+        void setCaronaAssociada(Carona * caronaAssociada)
         {
             this->caronaAssociada = caronaAssociada;
         }

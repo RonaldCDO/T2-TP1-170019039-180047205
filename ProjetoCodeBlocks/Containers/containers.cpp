@@ -38,6 +38,19 @@ bool ContainerUsuarios::obterUsuario (Email email, Usuario * usuario)
 }
 
 
+void ContainerUsuarios::excluir (Email email)
+{
+    for (vector<Usuario>::iterator user = repositorioUsuarios.begin(); user != repositorioUsuarios.end(); user++)
+    {
+        if (user->getEmail().getValor() == email.getValor())
+        {
+            repositorioUsuarios.erase(user);
+            return;
+        }
+    }
+}
+
+
 
 bool ContainerContas::RepositorioCriado = false;
 ContainerContas * ContainerContas::refContConta = 0;
@@ -64,6 +77,7 @@ void ContainerContas::inserir (Conta conta)
 bool ContainerContas::obterConta (Usuario usuario, Conta * conta1, Conta * conta2)
 {
     bool contaEncontrada = false;
+    bool duasContas = false;
 
     for (vector<Conta>::iterator conta = repositorioContas.begin(); conta != repositorioContas.end(); conta++)
     {
@@ -77,15 +91,12 @@ bool ContainerContas::obterConta (Usuario usuario, Conta * conta1, Conta * conta
             else
             {
                 *conta2 = *conta;
+                duasContas = true;
             }
         }
     }
-    if (contaEncontrada)
-    {
-        return true;
-    }
-
-    return false;
+    
+    return duasContas;
 }
 
 
@@ -205,6 +216,22 @@ void ContainerCaronas::excluir(CodigoDeCarona rideCode)
 }
 
 
+vector<Carona> ContainerCaronas::buscarCaronasDoUsuario (Email * email)
+{
+    vector<Carona> caronasUsuario;
+
+    for (vector<Carona>::iterator ride = repositorioCaronas.begin(); ride != repositorioCaronas.end(); ride++)
+    {
+        if (ride->getProvedorDaCarona()->getEmail().getValor() == email->getValor())
+        {
+            caronasUsuario.push_back(*ride);
+        }
+    }
+
+    return caronasUsuario;    
+}
+
+
 
 bool ContainerReservas::RepositorioCriado = false;
 ContainerReservas * ContainerReservas::refContReserva = 0;
@@ -243,19 +270,17 @@ Reserva ContainerReservas::obterReservas(CodigoDeReserva * reserveCode)
 
 vector<Reserva> ContainerReservas::listarReservasDeCarona(CodigoDeCarona * rideCode)
 {
-    vector<Reserva> reservas;
-    
+    vector<Reserva> reservasDaCarona;
+
     for (vector<Reserva>::iterator reserva = repositorioReservas.begin(); reserva != repositorioReservas.end(); reserva++)
     {
-        if(reserva->getCaronaAssociada()->getCodigoDeCarona().getValor() == rideCode->getValor())
+        if (reserva->getCaronaAssociada()->getCodigoDeCarona().getValor() == rideCode->getValor())
         {
-            reservas.push_back(*reserva);
+            reservasDaCarona.push_back(*reserva);
         }
     }
 
-    cout << to_string(reservas.size()) << endl;
-
-    return reservas;
+    return reservasDaCarona;
 }
 
 
@@ -281,7 +306,20 @@ bool ContainerReservas::excluirReserva(CodigoDeReserva * reserveCode, CodigoDeCa
 }
 
 
+vector<Reserva> ContainerReservas::buscarReservasDoUsuario (Email * email)
+{
+    vector<Reserva> reservasUsuario;
 
+    for (vector<Reserva>::iterator reserva = repositorioReservas.begin(); reserva != repositorioReservas.end(); reserva++)
+    {
+        if (reserva->getCliente()->getEmail().getValor() == email->getValor())
+        {
+            reservasUsuario.push_back(*reserva);
+        }
+    }
+
+    return reservasUsuario;
+}
 
 
 

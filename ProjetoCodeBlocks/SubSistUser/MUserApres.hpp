@@ -16,8 +16,8 @@ class CntrUserApres : public IUserApres
         {
             this->cntrUserServ = cntrUserServ;
         }
-        void cadastrar() throw(runtime_error);
-        void excluir(Email * email) throw(runtime_error);
+        void cadastrar();
+        bool excluir(Email * email);
 };
 
 
