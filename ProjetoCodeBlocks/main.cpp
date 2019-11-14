@@ -2,7 +2,9 @@
 
 #include <string>
 #include <string.h>
+
 #include <curses.h>
+//#include "curses.h"
 
 #include "dominios.hpp"
 #include "entidades.hpp"
